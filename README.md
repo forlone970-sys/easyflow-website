@@ -1,3 +1,4 @@
+
 # EasyFlow — Official Startup Portfolio Website
 
 > **"Turning Ideas Into Intelligent Solutions."**  
@@ -104,3 +105,6 @@ The build is configured with `base: './'`, ensuring all assets, scripts, and sty
 ---
 
 &copy; 2026 EasyFlow. All rights reserved. Built with purpose & precision.
+
+
+
