@@ -1,14 +1,21 @@
 import React from 'react';
 import { Mail } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  basePath?: string;
+  isSubPage?: boolean;
+}
+
+export const Footer: React.FC<FooterProps> = ({ basePath = './', isSubPage = false }) => {
   const currentYear = new Date().getFullYear();
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const elem = document.querySelector(id);
-    if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth' });
+    if (!isSubPage) {
+      e.preventDefault();
+      const elem = document.querySelector(id);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -22,7 +29,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center shrink-0">
                 <img
-                  src="./assets/easyflow-icon.jpg"
+                  src={`${basePath}assets/easyflow-icon.jpg`}
                   alt="EasyFlow Logo"
                   className="w-full h-full object-contain"
                 />
@@ -50,7 +57,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <a
-                  href="#home"
+                  href={`${basePath}#home`}
                   onClick={(e) => handleScrollTo(e, '#home')}
                   className="hover:text-easyflow-accent transition-colors"
                 >
@@ -59,7 +66,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#about"
+                  href={`${basePath}#about`}
                   onClick={(e) => handleScrollTo(e, '#about')}
                   className="hover:text-easyflow-accent transition-colors"
                 >
@@ -68,7 +75,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#products"
+                  href={`${basePath}#products`}
                   onClick={(e) => handleScrollTo(e, '#products')}
                   className="hover:text-easyflow-accent transition-colors"
                 >
@@ -77,7 +84,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#vision"
+                  href={`${basePath}#vision`}
                   onClick={(e) => handleScrollTo(e, '#vision')}
                   className="hover:text-easyflow-accent transition-colors"
                 >
@@ -86,11 +93,20 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href={`${basePath}#contact`}
                   onClick={(e) => handleScrollTo(e, '#contact')}
                   className="hover:text-easyflow-accent transition-colors"
                 >
                   Contact Us
+                </a>
+              </li>
+              <li className="pt-2 border-t border-slate-800/80">
+                <a
+                  href={`${basePath}medimate/delete-account/`}
+                  className="hover:text-rose-400 text-slate-300 font-medium transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0"></span>
+                  <span>MediMate Account Deletion</span>
                 </a>
               </li>
             </ul>

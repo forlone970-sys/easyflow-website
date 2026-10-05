@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found | EasyFlow</title>
+    <script>
+      // Single Page App routing & subpath fallback for GitHub Pages
+      (function() {
+        var path = window.location.pathname;
+        if (path.toLowerCase().indexOf('delete-account') !== -1) {
+          // Calculate repo base or root
+          var segments = path.split('/').filter(Boolean);
+          if (segments[0] === 'easyflow-website') {
+            window.location.replace('/easyflow-website/medimate/delete-account/');
+          } else {
+            window.location.replace('/medimate/delete-account/');
+          }
+        }
+      })();
+    </script>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        max-width: 480px;
+        border: 1px solid #e2e8f0;
+      }
+      h1 { font-size: 24px; margin-bottom: 12px; color: #046E86; }
+      p { color: #64748b; font-size: 15px; margin-bottom: 24px; line-height: 1.5; }
+      .btn {
+        display: inline-block;
+        background: #046E86;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .btn:hover { background: #06576B; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Page Not Found</h1>
+      <p>The page you are looking for may have moved or doesn't exist.</p>
+      <a href="./" class="btn">Return to EasyFlow Home</a>
+    </div>
+  </body>
+</html>

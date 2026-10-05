@@ -3,9 +3,11 @@ import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   onNavigate?: (id: string) => void;
+  basePath?: string;
+  isSubPage?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = () => {
+export const Navbar: React.FC<NavbarProps> = ({ basePath = './', isSubPage = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -23,19 +25,23 @@ export const Navbar: React.FC<NavbarProps> = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Products', href: '#products' },
-    { label: 'Vision', href: '#vision' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: `${basePath}#home` },
+    { label: 'About', href: `${basePath}#about` },
+    { label: 'Products', href: `${basePath}#products` },
+    { label: 'Vision', href: `${basePath}#vision` },
+    { label: 'Contact', href: `${basePath}#contact` },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+    if (!isSubPage && href.startsWith('#')) {
+      e.preventDefault();
+      setMobileMenuOpen(false);
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      setMobileMenuOpen(false);
     }
   };
 
@@ -51,14 +57,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
         <div className="flex items-center justify-between">
           {/* Logo & Brand Identity */}
           <a
-            href="#home"
-            onClick={(e) => handleLinkClick(e, '#home')}
+            href={`${basePath}#home`}
+            onClick={(e) => handleLinkClick(e, `${basePath}#home`)}
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-easyflow-600 rounded-lg p-1"
             aria-label="EasyFlow - Home"
           >
             <div className="w-10 h-10 rounded-xl overflow-hidden bg-white border border-slate-200/90 shadow-xs flex items-center justify-center p-1 group-hover:border-easyflow-300 transition-colors">
               <img
-                src="./assets/easyflow-mark.png"
+                src={`${basePath}assets/easyflow-mark.png`}
                 alt="EasyFlow Official Logo"
                 className="w-full h-full object-contain"
                 loading="eager"
@@ -91,14 +97,24 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
           {/* CTA Button Desktop */}
           <div className="hidden md:flex items-center space-x-3">
-            <a
-              href="#products"
-              onClick={(e) => handleLinkClick(e, '#products')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-sm hover:shadow-md transition-all active:scale-[0.98] group"
-            >
-              <span>Explore Our Products</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            {isSubPage ? (
+              <a
+                href={`${basePath}#products`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-sm hover:shadow-md transition-all active:scale-[0.98] group"
+              >
+                <span>Back to Main Website</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            ) : (
+              <a
+                href="#products"
+                onClick={(e) => handleLinkClick(e, '#products')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-sm hover:shadow-md transition-all active:scale-[0.98] group"
+              >
+                <span>Explore Our Products</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            )}
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -132,12 +148,21 @@ export const Navbar: React.FC<NavbarProps> = () => {
             ))}
             <div className="pt-3 border-t border-slate-100">
               <a
-                href="#products"
-                onClick={(e) => handleLinkClick(e, '#products')}
+                href={`${basePath}#products`}
+                onClick={(e) => handleLinkClick(e, `${basePath}#products`)}
                 className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-base font-semibold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-sm transition-all"
               >
-                <Sparkles className="w-4 h-4 text-easyflow-accent" />
-                <span>Explore Our Products</span>
+                {isSubPage ? (
+                  <>
+                    <ArrowRight className="w-4 h-4 text-easyflow-accent" />
+                    <span>Back to Main Website</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 text-easyflow-accent" />
+                    <span>Explore Our Products</span>
+                  </>
+                )}
               </a>
             </div>
           </div>

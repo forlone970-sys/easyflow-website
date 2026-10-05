@@ -102,15 +102,27 @@ export const Products: React.FC<ProductsProps> = ({ products, onSelectProduct })
                   {product.tagline}
                 </span>
 
-                <button
-                  type="button"
-                  onClick={() => onSelectProduct(product)}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-easyflow-600 hover:text-white bg-easyflow-50 hover:bg-easyflow-600 border border-easyflow-200 hover:border-easyflow-600 transition-all active:scale-[0.98] group/btn w-full sm:w-auto"
-                  aria-label={`Learn more about ${product.name}`}
-                >
-                  <span>Learn More</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                </button>
+                <div className="flex items-center gap-2.5 flex-wrap w-full sm:w-auto justify-end">
+                  {product.id === 'medimate' && (
+                    <a
+                      href="./medimate/delete-account/"
+                      className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-rose-700 hover:text-white bg-rose-50 hover:bg-rose-600 border border-rose-200 hover:border-rose-600 transition-all"
+                      title="MediMate Account & Data Deletion Portal"
+                    >
+                      <span>Data Deletion</span>
+                    </a>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => onSelectProduct(product)}
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-easyflow-600 hover:text-white bg-easyflow-50 hover:bg-easyflow-600 border border-easyflow-200 hover:border-easyflow-600 transition-all active:scale-[0.98] group/btn flex-1 sm:flex-initial"
+                    aria-label={`Learn more about ${product.name}`}
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </button>
+                </div>
               </div>
 
             </div>
