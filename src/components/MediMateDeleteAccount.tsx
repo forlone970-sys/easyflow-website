@@ -119,13 +119,23 @@ Thank you.`;
               <span className="text-easyflow-700 font-semibold">Account & Data Deletion</span>
             </nav>
 
-            <a
-              href={`${basePath}#products`}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-easyflow-600 hover:text-easyflow-700 bg-white hover:bg-easyflow-50 px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-2xs transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to EasyFlow Website</span>
-            </a>
+            <div className="flex items-center gap-2.5">
+              <a
+                href={`${basePath}medimate/privacy-policy/`}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-easyflow-700 hover:text-white bg-easyflow-50 hover:bg-easyflow-600 px-3.5 py-1.5 rounded-xl border border-easyflow-200 hover:border-easyflow-600 shadow-2xs transition-colors"
+                title="View MediMate Official Privacy Policy"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Privacy Policy</span>
+              </a>
+              <a
+                href={`${basePath}#products`}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-easyflow-600 hover:text-easyflow-700 bg-white hover:bg-easyflow-50 px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-2xs transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back to EasyFlow Website</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -193,7 +203,7 @@ Thank you.`;
               If you have registered or used the MediMate application and wish to permanently close your account and delete your associated records, you can submit a deletion request directly to the official EasyFlow support email system. All requests are processed with diligence, confidentiality, and in compliance with Google Play Data Safety requirements.
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold">
                 <span>Official Support Email:</span>
                 <a
@@ -203,6 +213,13 @@ Thank you.`;
                   {officialEmail}
                 </a>
               </div>
+              <a
+                href={`${basePath}medimate/privacy-policy/`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-easyflow-50 text-easyflow-700 hover:bg-easyflow-100 border border-easyflow-200 text-xs font-semibold transition-colors"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-easyflow-600" />
+                <span>Read MediMate Privacy Policy</span>
+              </a>
             </div>
           </section>
 
@@ -659,18 +676,27 @@ Thank you.`;
           </section>
 
           {/* Trust and Governance Note */}
-          <div className="text-center pt-4 text-xs text-slate-500 space-y-1">
+          <div className="text-center pt-4 text-xs text-slate-500 space-y-1.5">
             <p>
               MediMate is developed and operated under EasyFlow Technologies.
             </p>
-            <p>
-              Official Inquiries & Data Privacy Support:{' '}
+            <p className="flex items-center justify-center gap-3 flex-wrap">
               <a
-                href={`mailto:${officialEmail}`}
+                href={`${basePath}medimate/privacy-policy/`}
                 className="text-easyflow-600 hover:text-easyflow-700 font-semibold underline"
               >
-                {officialEmail}
+                Official MediMate Privacy Policy
               </a>
+              <span>•</span>
+              <span>
+                Support:{' '}
+                <a
+                  href={`mailto:${officialEmail}`}
+                  className="text-easyflow-600 hover:text-easyflow-700 font-semibold underline"
+                >
+                  {officialEmail}
+                </a>
+              </span>
             </p>
           </div>
 

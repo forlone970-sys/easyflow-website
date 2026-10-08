@@ -16,6 +16,13 @@
           } else {
             window.location.replace('/medimate/delete-account/');
           }
+        } else if (path.toLowerCase().indexOf('privacy-policy') !== -1) {
+          var segments = path.split('/').filter(Boolean);
+          if (segments[0] === 'easyflow-website') {
+            window.location.replace('/easyflow-website/medimate/privacy-policy/');
+          } else {
+            window.location.replace('/medimate/privacy-policy/');
+          }
         }
       })();
     </script>

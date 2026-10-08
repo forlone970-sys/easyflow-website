@@ -8,6 +8,7 @@ import { Vision } from './components/Vision';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { MediMateDeleteAccount } from './components/MediMateDeleteAccount';
+import { MediMatePrivacyPolicy } from './components/MediMatePrivacyPolicy';
 import { products } from './data/products';
 import { Product } from './types';
 
@@ -27,6 +28,20 @@ export const App: React.FC = () => {
     return false;
   });
 
+  const [isPrivacyPage, setIsPrivacyPage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      const search = window.location.search.toLowerCase();
+      return (
+        path.includes('privacy-policy') ||
+        hash.includes('privacy-policy') ||
+        search.includes('privacy-policy')
+      );
+    }
+    return false;
+  });
+
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.toLowerCase();
@@ -36,6 +51,11 @@ export const App: React.FC = () => {
         path.includes('delete-account') ||
         hash.includes('delete-account') ||
         search.includes('delete-account')
+      );
+      setIsPrivacyPage(
+        path.includes('privacy-policy') ||
+        hash.includes('privacy-policy') ||
+        search.includes('privacy-policy')
       );
     };
 
@@ -53,6 +73,18 @@ export const App: React.FC = () => {
       contactElem.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (isPrivacyPage) {
+    return (
+      <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
+        <Navbar basePath="./" isSubPage={true} />
+        <main className="flex-1">
+          <MediMatePrivacyPolicy basePath="./" />
+        </main>
+        <Footer basePath="./" isSubPage={true} />
+      </div>
+    );
+  }
 
   if (isDeletePage) {
     return (

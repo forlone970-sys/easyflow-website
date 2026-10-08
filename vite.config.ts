@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         medimateDeleteAccount: resolve(__dirname, 'medimate/delete-account/index.html'),
+        medimatePrivacyPolicy: resolve(__dirname, 'medimate/privacy-policy/index.html'),
       },
     },
   },

@@ -159,28 +159,52 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
             </div>
           )}
 
-          {/* MediMate Account & Data Deletion Portal Resource */}
+          {/* MediMate Privacy Policy & Account Deletion Resources */}
           {product.id === 'medimate' && (
-            <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="flex items-start gap-2.5">
-                <ShieldCheck className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-xs font-bold text-rose-950 uppercase tracking-wide">
-                    Account & Data Safety
-                  </div>
-                  <div className="text-xs text-rose-800 mt-0.5">
-                    Need to request deletion of your MediMate account and associated data?
+            <div className="space-y-3">
+              <div className="p-4 rounded-2xl bg-easyflow-50/70 border border-easyflow-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <ShieldCheck className="w-4 h-4 text-easyflow-600 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-easyflow-navy uppercase tracking-wide">
+                      MediMate Privacy Policy
+                    </div>
+                    <div className="text-xs text-slate-600 mt-0.5">
+                      Review how personal and medication data is collected, stored, and protected.
+                    </div>
                   </div>
                 </div>
+
+                <a
+                  href="./medimate/privacy-policy/"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
+                >
+                  <span>View Privacy Policy</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
               </div>
 
-              <a
-                href="./medimate/delete-account/"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
-              >
-                <span>Request Deletion</span>
-                <ArrowRight className="w-3 h-3" />
-              </a>
+              <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <ShieldCheck className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-rose-950 uppercase tracking-wide">
+                      Account & Data Safety
+                    </div>
+                    <div className="text-xs text-rose-800 mt-0.5">
+                      Need to request deletion of your MediMate account and associated data?
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="./medimate/delete-account/"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
+                >
+                  <span>Request Deletion</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
             </div>
           )}
         </div>

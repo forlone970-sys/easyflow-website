@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>MediMate Privacy Policy | EasyFlow</title>
+    <meta name="title" content="MediMate Privacy Policy | EasyFlow" />
+    <meta name="description" content="Official Privacy Policy for MediMate by EasyFlow, explaining how user information is collected, used, stored, and managed, including account and data deletion options." />
+    <meta name="keywords" content="MediMate, EasyFlow, privacy policy, Google Play Privacy Policy, data safety, medication reminder, health privacy" />
+    <meta name="author" content="EasyFlow" />
+    <meta name="theme-color" content="#046E86" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MediMate Privacy Policy | EasyFlow" />
+    <meta property="og:description" content="Official Privacy Policy for MediMate, detailing data collection, storage, third-party services, and account deletion options." />
+    <meta property="og:image" content="../../assets/medimate-logo.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MediMate Privacy Policy | EasyFlow" />
+    <meta name="twitter:description" content="Official Privacy Policy for MediMate, detailing data collection, storage, third-party services, and account deletion options." />
+    <meta name="twitter:image" content="../../assets/medimate-logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/medimate-logo.png" />
+    <link rel="apple-touch-icon" href="../../assets/medimate-logo.png" />
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-easyflow-navy antialiased selection:bg-easyflow-100 selection:text-easyflow-900 min-h-screen">
+    <div id="root">
+      <!-- Semantic Static Fallback for Search Engines and Fast Review Crawlers -->
+      <noscript>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 24px; line-height: 1.6; color: #1e293b;">
+          <h1 style="color: #046E86; font-size: 28px; margin-bottom: 8px;">MediMate Privacy Policy</h1>
+          <p><strong>Developed and Operated by EasyFlow Technologies</strong></p>
+          <p><em>Last Updated: October 8, 2026</em></p>
+          <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+
+          <h2>1. Introduction</h2>
+          <p>This Privacy Policy explains how EasyFlow handles personal information and health-routine data when you use the MediMate mobile application on Android. MediMate is a medication reminder and adherence coordination application designed to help individuals organize their personal medication routines and optionally coordinate with caregivers.</p>
+
+          <h2>2. Information We Collect</h2>
+          <p>MediMate collects only information necessary for the functioning of the application:</p>
+          <ul>
+            <li><strong>Account Information:</strong> Email address, display name, user role (Patient or Caregiver), user ID (UID). Passwords are handled securely via Firebase Authentication; MediMate does not store plaintext passwords.</li>
+            <li><strong>Medication & Routine Information:</strong> Medication names, dosages, units, schedules, reminder times, start and end dates, adherence logs (taken, missed, late, remind later, skipped), and optional mood or notes.</li>
+            <li><strong>Caregiver Relationship Information:</strong> Patient name, patient email, and linked caregiver email when link requests are initiated and accepted.</li>
+            <li><strong>Device & Technical Information:</strong> Exact alarm and notification permissions for punctual reminders, camera/storage access only when taking/uploading medication photos or saving exported PDF reports, push notification token (FCM), and anonymized crash diagnostics (Firebase Crashlytics).</li>
+          </ul>
+
+          <h2>3. How We Use Information</h2>
+          <p>We use information to provide core application functionality: authenticating accounts, delivering medication reminders at scheduled times, maintaining adherence history and Medication Passport records, enabling caregiver-patient coordination, sending system announcements, and diagnosing stability issues.</p>
+
+          <h2>4. Data Storage</h2>
+          <p>Data is stored locally on the user's device using an embedded database (Isar) and SharedPreferences for offline reminder reliability, and synchronized remotely with Google Cloud Firestore and Firebase Authentication when connected to the internet.</p>
+
+          <h2>5. Notifications and Medication Reminders</h2>
+          <p>Local alerts are scheduled on your device using Android exact alarms. <strong>Medical Disclaimer:</strong> MediMate is an organizational schedule tool only. It does not provide medical diagnoses, treatment decisions, or clinical advice, and does not replace professional medical personnel.</p>
+
+          <h2>6. Patient and Caregiver Data</h2>
+          <p>Caregiver sharing occurs only with mutual consent (patient sends request to caregiver's email, caregiver accepts). Linked caregivers can view medication names and adherence status. Either party can unlink at any time.</p>
+
+          <h2>7. Data Sharing</h2>
+          <p>EasyFlow does not sell or rent personal information. Data is shared only with Google Firebase (as our backend infrastructure processor) and authorized caregivers linked by the user.</p>
+
+          <h2>8. Third-Party Services</h2>
+          <ul>
+            <li><strong>Google Firebase Authentication:</strong> User authentication and session management.</li>
+            <li><strong>Google Cloud Firestore:</strong> Cloud database storage.</li>
+            <li><strong>Google Firebase Cloud Messaging (FCM):</strong> System announcements and updates.</li>
+            <li><strong>Google Firebase Crashlytics:</strong> Anonymized crash logging.</li>
+          </ul>
+
+          <h2>9. Data Retention</h2>
+          <p>Data is retained while the user maintains an active account to support routine tracking and history. When an account is deleted, personal profile and medication data are permanently removed.</p>
+
+          <h2>10. Account and Data Deletion</h2>
+          <p>Users can delete their account at any time:</p>
+          <ol>
+            <li><strong>In-App:</strong> Profile &gt; Support &amp; Legal &gt; Delete Account (requires password confirmation).</li>
+            <li><strong>Web Portal:</strong> Visit <a href="/medimate/delete-account/">/medimate/delete-account/</a> to request deletion, or email <a href="mailto:support.easyflow@gmail.com?subject=MediMate%20Account%20Deletion%20Request">support.easyflow@gmail.com</a>.</li>
+          </ol>
+
+          <h2>11. Data Security</h2>
+          <p>Data transmissions use HTTPS/TLS encryption, passwords are secure within Firebase Auth, and Firestore security rules restrict access. No method of electronic transmission is 100% secure, but we apply industry-standard protections.</p>
+
+          <h2>12. Children's Privacy</h2>
+          <p>MediMate is not directed at children under the age of 13. Children may only use the app with parental/guardian consent and supervision.</p>
+
+          <h2>13. Changes to This Privacy Policy</h2>
+          <p>We may update this policy as the app evolves. Updates are indicated by the "Last Updated" date.</p>
+
+          <h2>14. Contact Us</h2>
+          <p>EasyFlow Technologies<br />
+          Email: <a href="mailto:support.easyflow@gmail.com">support.easyflow@gmail.com</a></p>
+        </div>
+      </noscript>
+    </div>
+    <script type="module" src="/src/medimate-privacy-policy-main.tsx"></script>
+  </body>
+</html>
