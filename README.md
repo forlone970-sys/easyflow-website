@@ -33,13 +33,6 @@ This repository contains the complete, production-grade source code for the offi
 
 ---
 
-## Leadership
-
-- **Basil Imran** — Founder & CEO
-- **Shehzad Ali** — Co-Founder & CFO
-
----
-
 ## Technology Stack
 
 - **Framework**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
