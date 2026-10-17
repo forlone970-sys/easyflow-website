@@ -102,6 +102,24 @@ export const Footer: React.FC<FooterProps> = ({ basePath = './', isSubPage = fal
               </li>
               <li className="pt-2 border-t border-slate-800/80">
                 <a
+                  href={`${basePath}spendora/privacy-policy/`}
+                  className="hover:text-easyflow-accent text-slate-300 font-medium transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-easyflow-accent shrink-0"></span>
+                  <span>Spendora Privacy Policy</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${basePath}spendora/delete-account/`}
+                  className="hover:text-rose-400 text-slate-300 font-medium transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0"></span>
+                  <span>Spendora Account Deletion</span>
+                </a>
+              </li>
+              <li className="pt-1">
+                <a
                   href={`${basePath}medimate/privacy-policy/`}
                   className="hover:text-easyflow-accent text-slate-300 font-medium transition-colors flex items-center gap-1.5"
                 >

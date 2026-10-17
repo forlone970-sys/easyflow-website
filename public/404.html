@@ -7,28 +7,37 @@
     <script>
       // Single Page App routing & subpath fallback for GitHub Pages
       (function() {
-        var path = window.location.pathname;
-        if (path.toLowerCase().indexOf('delete-account') !== -1) {
-          // Calculate repo base or root
-          var segments = path.split('/').filter(Boolean);
-          if (segments[0] === 'easyflow-website') {
-            window.location.replace('/easyflow-website/medimate/delete-account/');
-          } else {
-            window.location.replace('/medimate/delete-account/');
+        var path = window.location.pathname.toLowerCase();
+        var segments = window.location.pathname.split('/').filter(Boolean);
+        var isRepoSubpath = segments[0] === 'easyflow-website';
+        var prefix = isRepoSubpath ? '/easyflow-website' : '';
+
+        // Spendora routes
+        if (path.indexOf('spendora') !== -1) {
+          if (path.indexOf('delete-account') !== -1) {
+            window.location.replace(prefix + '/spendora/delete-account/');
+            return;
           }
-        } else if (path.toLowerCase().indexOf('privacy-policy') !== -1) {
-          var segments = path.split('/').filter(Boolean);
-          if (segments[0] === 'easyflow-website') {
-            window.location.replace('/easyflow-website/medimate/privacy-policy/');
-          } else {
-            window.location.replace('/medimate/privacy-policy/');
+          if (path.indexOf('privacy-policy') !== -1) {
+            window.location.replace(prefix + '/spendora/privacy-policy/');
+            return;
           }
+        }
+
+        // MediMate routes
+        if (path.indexOf('delete-account') !== -1) {
+          window.location.replace(prefix + '/medimate/delete-account/');
+          return;
+        }
+        if (path.indexOf('privacy-policy') !== -1) {
+          window.location.replace(prefix + '/medimate/privacy-policy/');
+          return;
         }
       })();
     </script>
     <style>
       body {
-        font-family: system-ui, -apple-system, sans-serif;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: #f8fafc;
         color: #0f172a;
         display: flex;
@@ -40,26 +49,34 @@
         text-align: center;
       }
       .card {
-        background: white;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        border-radius: 24px;
+        box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
         max-width: 480px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(226, 232, 240, 0.85);
       }
-      h1 { font-size: 24px; margin-bottom: 12px; color: #046E86; }
-      p { color: #64748b; font-size: 15px; margin-bottom: 24px; line-height: 1.5; }
+      h1 { font-size: 26px; font-weight: 800; margin-bottom: 12px; color: #1D4ED8; letter-spacing: -0.02em; }
+      p { color: #64748b; font-size: 15px; margin-bottom: 28px; line-height: 1.6; }
       .btn {
         display: inline-block;
-        background: #046E86;
+        background: #1D4ED8;
         color: white;
-        padding: 12px 24px;
+        padding: 12px 28px;
         border-radius: 12px;
         text-decoration: none;
         font-weight: 600;
         font-size: 14px;
+        box-shadow: 0 4px 14px 0 rgba(29, 78, 216, 0.25);
+        transition: all 0.2s ease;
       }
-      .btn:hover { background: #06576B; }
+      .btn:hover {
+        background: #2563EB;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px 0 rgba(29, 78, 216, 0.35);
+      }
     </style>
   </head>
   <body>

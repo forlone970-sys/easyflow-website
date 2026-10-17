@@ -49,8 +49,8 @@ export const Navbar: React.FC<NavbarProps> = ({ basePath = './', isSubPage = fal
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-3'
-          : 'bg-white/80 backdrop-blur-sm py-5'
+          ? 'glass-nav-scrolled py-3'
+          : 'glass-nav py-4 sm:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({ basePath = './', isSubPage = fal
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/98 backdrop-blur-xl border-b border-slate-200 shadow-lg px-4 pt-3 pb-6 animate-fade-in">
+        <div className="md:hidden glass-nav-scrolled border-b border-slate-200/90 shadow-xl px-4 pt-3 pb-6 animate-fade-in">
           <div className="flex flex-col space-y-2 pt-2">
             {navLinks.map((link) => (
               <a

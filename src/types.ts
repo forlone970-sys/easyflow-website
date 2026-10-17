@@ -17,6 +17,8 @@ export interface Product {
   highlights: string[];
   disclaimer?: string;
   accentColor: string;
+  isVisible?: boolean;
+  order?: number;
 }
 
 export interface LeadershipMember {

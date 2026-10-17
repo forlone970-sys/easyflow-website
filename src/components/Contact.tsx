@@ -31,12 +31,12 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-white relative">
+    <section id="contact" className="py-20 md:py-28 bg-slate-50/50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-easyflow-100 text-easyflow-700 text-xs font-semibold tracking-wide uppercase mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-pill text-easyflow-700 text-xs font-semibold tracking-wide uppercase mb-3">
             Get In Touch
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-easyflow-navy tracking-tight break-words">
@@ -51,8 +51,8 @@ export const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
           
           {/* Left Column: Direct Email & Info Cards */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-slate-50/80 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-card">
+          <div className="lg:col-span-5 space-y-6 reveal-on-scroll">
+            <div className="glass-card rounded-3xl p-6 sm:p-8">
               <div className="w-12 h-12 rounded-2xl bg-easyflow-600 text-white flex items-center justify-center mb-6 shadow-sm">
                 <Mail className="w-6 h-6" />
               </div>
@@ -115,7 +115,7 @@ export const Contact: React.FC = () => {
           </div>
 
           {/* Right Column: Transparent Email Message Composer */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-card">
+          <div className="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 reveal-on-scroll">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-easyflow-50 border border-easyflow-100 flex items-center justify-center text-easyflow-600">
                 <MessageSquare className="w-5 h-5" />

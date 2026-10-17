@@ -9,54 +9,59 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { MediMateDeleteAccount } from './components/MediMateDeleteAccount';
 import { MediMatePrivacyPolicy } from './components/MediMatePrivacyPolicy';
+import { SpendoraDeleteAccount } from './components/SpendoraDeleteAccount';
+import { SpendoraPrivacyPolicy } from './components/SpendoraPrivacyPolicy';
 import { products } from './data/products';
 import { Product } from './types';
 
+interface RouteState {
+  isSpendoraPrivacy: boolean;
+  isSpendoraDelete: boolean;
+  isMediMatePrivacy: boolean;
+  isMediMateDelete: boolean;
+}
+
+const getRouteState = (): RouteState => {
+  if (typeof window === 'undefined') {
+    return {
+      isSpendoraPrivacy: false,
+      isSpendoraDelete: false,
+      isMediMatePrivacy: false,
+      isMediMateDelete: false,
+    };
+  }
+  const path = window.location.pathname.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  const search = window.location.search.toLowerCase();
+
+  const isSpendora =
+    path.includes('spendora') ||
+    hash.includes('spendora') ||
+    search.includes('spendora');
+  const isDelete =
+    path.includes('delete-account') ||
+    hash.includes('delete-account') ||
+    search.includes('delete-account');
+  const isPrivacy =
+    path.includes('privacy-policy') ||
+    hash.includes('privacy-policy') ||
+    search.includes('privacy-policy');
+
+  return {
+    isSpendoraPrivacy: isSpendora && isPrivacy,
+    isSpendoraDelete: isSpendora && isDelete,
+    isMediMatePrivacy: !isSpendora && isPrivacy,
+    isMediMateDelete: !isSpendora && isDelete,
+  };
+};
+
 export const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isDeletePage, setIsDeletePage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname.toLowerCase();
-      const hash = window.location.hash.toLowerCase();
-      const search = window.location.search.toLowerCase();
-      return (
-        path.includes('delete-account') ||
-        hash.includes('delete-account') ||
-        search.includes('delete-account')
-      );
-    }
-    return false;
-  });
-
-  const [isPrivacyPage, setIsPrivacyPage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname.toLowerCase();
-      const hash = window.location.hash.toLowerCase();
-      const search = window.location.search.toLowerCase();
-      return (
-        path.includes('privacy-policy') ||
-        hash.includes('privacy-policy') ||
-        search.includes('privacy-policy')
-      );
-    }
-    return false;
-  });
+  const [routeState, setRouteState] = useState<RouteState>(getRouteState);
 
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname.toLowerCase();
-      const hash = window.location.hash.toLowerCase();
-      const search = window.location.search.toLowerCase();
-      setIsDeletePage(
-        path.includes('delete-account') ||
-        hash.includes('delete-account') ||
-        search.includes('delete-account')
-      );
-      setIsPrivacyPage(
-        path.includes('privacy-policy') ||
-        hash.includes('privacy-policy') ||
-        search.includes('privacy-policy')
-      );
+      setRouteState(getRouteState());
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -67,6 +72,33 @@ export const App: React.FC = () => {
     };
   }, []);
 
+  // Cinematic Scroll Reveal Observer
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [routeState]);
+
   const handleContactFromModal = () => {
     const contactElem = document.querySelector('#contact');
     if (contactElem) {
@@ -74,7 +106,31 @@ export const App: React.FC = () => {
     }
   };
 
-  if (isPrivacyPage) {
+  if (routeState.isSpendoraPrivacy) {
+    return (
+      <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
+        <Navbar basePath="./" isSubPage={true} />
+        <main className="flex-1">
+          <SpendoraPrivacyPolicy basePath="./" />
+        </main>
+        <Footer basePath="./" isSubPage={true} />
+      </div>
+    );
+  }
+
+  if (routeState.isSpendoraDelete) {
+    return (
+      <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
+        <Navbar basePath="./" isSubPage={true} />
+        <main className="flex-1">
+          <SpendoraDeleteAccount basePath="./" />
+        </main>
+        <Footer basePath="./" isSubPage={true} />
+      </div>
+    );
+  }
+
+  if (routeState.isMediMatePrivacy) {
     return (
       <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
         <Navbar basePath="./" isSubPage={true} />
@@ -86,7 +142,7 @@ export const App: React.FC = () => {
     );
   }
 
-  if (isDeletePage) {
+  if (routeState.isMediMateDelete) {
     return (
       <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
         <Navbar basePath="./" isSubPage={true} />

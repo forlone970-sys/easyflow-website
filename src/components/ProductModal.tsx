@@ -51,10 +51,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
     >
       <div
         ref={dialogRef}
-        className="bg-white rounded-3xl shadow-2xl border border-slate-200/90 w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-slide-up"
+        className="glass-modal rounded-3xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-slide-up"
       >
         {/* Modal Header */}
-        <div className="p-6 sm:p-8 border-b border-slate-100 flex items-start justify-between gap-4 bg-slate-50/50">
+        <div className="p-6 sm:p-8 border-b border-slate-100 flex items-start justify-between gap-4 bg-slate-50/60">
           <div className="flex items-center gap-4">
             {/* Logo Badge Container */}
             <div
@@ -72,14 +72,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
             </div>
 
             <div>
-              <div className="flex items-center gap-2.5 flex-wrap">
-                <h3 id="modal-title" className="text-2xl font-extrabold text-easyflow-navy">
-                  {product.name}
-                </h3>
-                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-easyflow-100 text-easyflow-700 border border-easyflow-200">
-                  {product.status}
-                </span>
-              </div>
+              <h3 id="modal-title" className="text-2xl font-extrabold text-easyflow-navy">
+                {product.name}
+              </h3>
               <p className="text-xs sm:text-sm font-medium text-slate-500 mt-1">
                 {product.category}
               </p>
@@ -156,6 +151,55 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
               <p className="leading-relaxed">
                 {product.disclaimer}
               </p>
+            </div>
+          )}
+
+          {/* Spendora Privacy Policy & Account Deletion Resources */}
+          {product.id === 'spendora' && (
+            <div className="space-y-3">
+              <div className="p-4 rounded-2xl bg-easyflow-50/70 border border-easyflow-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <ShieldCheck className="w-4 h-4 text-easyflow-600 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-easyflow-navy uppercase tracking-wide">
+                      Spendora Privacy Policy
+                    </div>
+                    <div className="text-xs text-slate-600 mt-0.5">
+                      Review how personal budgeting logs, receipts, and offline SQLite data are managed.
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="./spendora/privacy-policy/"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
+                >
+                  <span>View Privacy Policy</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <ShieldCheck className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-rose-950 uppercase tracking-wide">
+                      Account & Data Safety
+                    </div>
+                    <div className="text-xs text-rose-800 mt-0.5">
+                      Need to request permanent deletion of your Spendora account and cloud records?
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="./spendora/delete-account/"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
+                >
+                  <span>Request Deletion</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
             </div>
           )}
 

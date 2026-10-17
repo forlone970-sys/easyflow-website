@@ -27,12 +27,12 @@ export const Vision: React.FC = () => {
   ];
 
   return (
-    <section id="vision" className="py-20 md:py-28 bg-slate-50/70 border-t border-slate-200/60 relative">
+    <section id="vision" className="py-20 md:py-28 bg-slate-50/70 border-t border-slate-200/70 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-easyflow-100 text-easyflow-700 text-xs font-semibold tracking-wide uppercase mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-pill text-easyflow-700 text-xs font-semibold tracking-wide uppercase mb-3">
             Core Principles
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-easyflow-navy tracking-tight break-words">
@@ -51,14 +51,14 @@ export const Vision: React.FC = () => {
             return (
               <div
                 key={pillar.title}
-                className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group"
+                className={`glass-card glass-card-hover rounded-3xl p-8 flex flex-col justify-between group reveal-on-scroll stagger-${index + 1}`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-easyflow-50 border border-easyflow-100 flex items-center justify-center text-easyflow-600 group-hover:bg-easyflow-600 group-hover:text-white transition-colors duration-300">
+                    <div className="w-14 h-14 rounded-2xl bg-easyflow-50 border border-easyflow-100 flex items-center justify-center text-easyflow-600 group-hover:bg-easyflow-600 group-hover:text-white transition-colors duration-300 shadow-xs">
                       <Icon className="w-7 h-7" />
                     </div>
-                    <span className="text-2xl font-black text-slate-200 group-hover:text-easyflow-200 transition-colors">
+                    <span className="text-2xl font-black text-slate-300/80 group-hover:text-easyflow-300 transition-colors">
                       0{index + 1}
                     </span>
                   </div>
@@ -76,7 +76,7 @@ export const Vision: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-slate-100 flex items-center text-xs font-semibold text-easyflow-600">
+                <div className="pt-6 mt-6 border-t border-slate-100/90 flex items-center text-xs font-semibold text-easyflow-600">
                   <span>Guiding Pillar</span>
                 </div>
               </div>

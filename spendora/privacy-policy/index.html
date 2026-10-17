@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Spendora Privacy Policy | EasyFlow</title>
+    <meta name="title" content="Spendora Privacy Policy | EasyFlow" />
+    <meta name="description" content="Official Privacy Policy for Spendora by EasyFlow, explaining how user financial entries, shopping spree records, and receipts are stored locally and synced securely via Google Cloud Firestore." />
+    <meta name="keywords" content="Spendora, EasyFlow, privacy policy, Google Play Privacy Policy, data safety, personal finance, budget tracker, expense manager" />
+    <meta name="author" content="EasyFlow Technologies" />
+    <meta name="theme-color" content="#1D4ED8" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Spendora Privacy Policy | EasyFlow" />
+    <meta property="og:description" content="Official Privacy Policy for Spendora, detailing local SQLite storage, Google Cloud Firestore synchronization, Firebase Authentication, and account deletion options." />
+    <meta property="og:image" content="../../assets/spendora-logo.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Spendora Privacy Policy | EasyFlow" />
+    <meta name="twitter:description" content="Official Privacy Policy for Spendora, detailing local SQLite storage, Google Cloud Firestore synchronization, Firebase Authentication, and account deletion options." />
+    <meta name="twitter:image" content="../../assets/spendora-logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/spendora-logo.png" />
+    <link rel="apple-touch-icon" href="../../assets/spendora-logo.png" />
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-slate-800 antialiased selection:bg-easyflow-100 selection:text-easyflow-800 min-h-screen">
+    <div id="root">
+      <!-- Semantic Static Fallback for Search Engines and Fast Review Crawlers -->
+      <noscript>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 24px; line-height: 1.6; color: #1e293b;">
+          <h1 style="color: #1D4ED8; font-size: 28px; margin-bottom: 8px;">Spendora Privacy Policy</h1>
+          <p><strong>Developed and Operated by EasyFlow Technologies</strong></p>
+          <p><em>Effective Date: October 17, 2026 | Last Updated: October 17, 2026</em></p>
+          <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+
+          <h2>1. Introduction</h2>
+          <p>This Privacy Policy explains how EasyFlow Technologies ("EasyFlow", "we", "us", or "our") collects, uses, stores, and protects personal data and financial transaction records when you use Spendora — our smart personal finance and shopping spree manager on Android. Spendora empowers users to track personal budgets, record itemized shopping trips, scan product barcodes, attach digital receipts, and gain actionable spending insights.</p>
+          <p><strong>Fundamental Privacy Principle:</strong> Spendora does not link to live bank accounts, does not store debit/credit card numbers or banking credentials, and does not sell or monetize personal financial data.</p>
+
+          <h2>2. Information We Collect</h2>
+          <ul>
+            <li><strong>Account & Authentication Information:</strong> When signing in via Google Sign-In or email/password authentication, we process your verified email address, display name, account avatar URL, and unique Firebase User Identifier (UID).</li>
+            <li><strong>Financial & Shopping Spree Records:</strong> Shopping spree sessions, budget targets, custom categories, individual item entries (names, prices, quantities, notes), category tags, payment method labels (user-defined cash/card labels), and receipt attachment metadata.</li>
+            <li><strong>Hardware & Device Permissions:</strong> Camera access is requested strictly for on-device barcode and QR scanning. Barcode frames are processed in-memory in real time and are never stored or transmitted. Optional battery optimization exemption is requested to allow scheduled daily or weekly budget review alerts.</li>
+            <li><strong>Diagnostic & App Health Data:</strong> Anonymized crash logs and app stability diagnostics processed via Google Firebase.</li>
+          </ul>
+
+          <h2>3. How We Use Information</h2>
+          <p>We use information exclusively to maintain local and cloud shopping registries, compute category breakdowns and budget remaining metrics, synchronize data across your authorized devices, enforce account security, and provide customer support.</p>
+
+          <h2>4. Storage Architecture & Local-First Philosophy</h2>
+          <p>Spendora utilizes a hybrid local-first architecture: all entries are saved immediately to an on-device embedded SQLite database for lightning-fast offline access. When connected to the internet, records synchronize with Google Cloud Firestore under your encrypted user identifier.</p>
+
+          <h2>5. Third-Party Service Providers</h2>
+          <ul>
+            <li><strong>Google Firebase Authentication:</strong> User authentication and session management.</li>
+            <li><strong>Google Cloud Firestore:</strong> Encrypted remote database replication.</li>
+            <li><strong>Google Firebase Crashlytics & Analytics:</strong> Anonymized crash telemetry and aggregate performance monitoring.</li>
+          </ul>
+
+          <h2>6. Data Sharing & Zero-Monetization Policy</h2>
+          <p>We do not sell, rent, broker, or trade personal data or spending logs with advertisers, data brokers, credit rating agencies, or financial marketers.</p>
+
+          <h2>7. Account & Data Deletion Rights</h2>
+          <p>Users have complete control over their data at all times:</p>
+          <ol>
+            <li><strong>In-App Deletion:</strong> Navigate to Profile / Settings &gt; Account Security &gt; Delete Account. Confirm with your credentials. Your Firebase Auth account and all associated Firestore documents are permanently deleted immediately.</li>
+            <li><strong>Web Deletion Portal:</strong> Submit a request at <a href="/spendora/delete-account/">/spendora/delete-account/</a> or email <a href="mailto:support.easyflow@gmail.com?subject=Spendora%20Account%20%26%20Data%20Deletion%20Request">support.easyflow@gmail.com</a>.</li>
+          </ol>
+
+          <h2>8. Security Measures</h2>
+          <p>All network traffic uses TLS 1.3 encryption. Cloud Firestore security rules strictly constrain document access to authenticated users matching their specific UID.</p>
+
+          <h2>9. Contact Us</h2>
+          <p>EasyFlow Technologies<br />
+          Email: <a href="mailto:support.easyflow@gmail.com">support.easyflow@gmail.com</a><br />
+          Website: <a href="https://easyflowco.github.io/">https://easyflowco.github.io/</a></p>
+        </div>
+      </noscript>
+    </div>
+    <script type="module" src="/src/spendora-privacy-policy-main.tsx"></script>
+  </body>
+</html>

@@ -2,6 +2,48 @@ import { Product } from '../types';
 
 export const products: Product[] = [
   {
+    id: 'spendora',
+    name: 'Spendora',
+    category: 'Personal Finance / Smart Budgeting',
+    tagline: 'Spend with intention. Live with freedom.',
+    shortDescription:
+      'Your money tells a story. Spendora helps you take control of it. From exposing unnecessary spending to revealing where your money disappears, Spendora turns everyday purchases into smarter financial decisions.',
+    fullDescription:
+      'Your money tells a story. Spendora helps you take control of it. From exposing unnecessary spending to revealing where your money disappears, Spendora turns everyday purchases into smarter financial decisions. Stop wondering where your money went. Start deciding where it goes. Spend with intention. Live with freedom.',
+    logo: './assets/spendora-logo.png',
+    logoTheme: 'dark',
+    status: 'In Development',
+    accentColor: '#FF6A00',
+    order: 1,
+    isVisible: true,
+    features: [
+      {
+        title: 'Smart Shopping Sprees & Budgets',
+        description: 'Plan, budget, and organize shopping trips in real-time with instant spending feedback.'
+      },
+      {
+        title: 'Barcode Item Scanner',
+        description: 'Quickly scan product barcodes with your device camera to look up details and log purchases.'
+      },
+      {
+        title: 'Immutable Digital Receipts',
+        description: 'Automatically generate detailed, permanent digital receipts and expense history for every completed spree.'
+      },
+      {
+        title: 'Local-First Offline Sync',
+        description: 'Full offline functionality powered by local SQLite, synchronizing seamlessly to Cloud Firestore when online.'
+      }
+    ],
+    highlights: [
+      'Offline SQLite embedded database architecture',
+      'Google Sign-In & Firebase email authentication',
+      'Cloud Firestore multi-device synchronization',
+      'Camera-based real-time barcode scanner'
+    ],
+    disclaimer:
+      'Spendora is a personal budgeting and shopping organization application. It does not provide professional financial advice, execute banking transactions, or manage investment portfolios.'
+  },
+  {
     id: 'medimate',
     name: 'MediMate',
     category: 'Healthcare / Medication Management',
@@ -54,6 +96,7 @@ export const products: Product[] = [
     logoTheme: 'dark',
     status: 'Prototype Concept',
     accentColor: '#0593A9',
+    isVisible: false,
     features: [
       {
         title: 'Dedicated Digital File Rooms',
@@ -162,3 +205,6 @@ export const products: Product[] = [
       'PetroPlan is a navigation and fuel-planning concept. It does not provide guaranteed fuel economy savings or live station inventory guarantees.'
   }
 ];
+
+export const visibleProducts: Product[] = products.filter((p) => p.isVisible !== false);
+

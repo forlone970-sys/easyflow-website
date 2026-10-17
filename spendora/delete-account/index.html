@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Spendora Account & Data Deletion | EasyFlow</title>
+    <meta name="title" content="Spendora Account & Data Deletion | EasyFlow" />
+    <meta name="description" content="Official portal to submit an account and associated data deletion request for Spendora by EasyFlow under Google Play Data Safety guidelines." />
+    <meta name="keywords" content="Spendora, EasyFlow, account deletion, data deletion, Google Play Data Safety, personal finance, budget tracker" />
+    <meta name="author" content="EasyFlow Technologies" />
+    <meta name="theme-color" content="#1D4ED8" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Spendora Account & Data Deletion | EasyFlow" />
+    <meta property="og:description" content="Official portal to submit an account and associated data deletion request for Spendora under Google Play Data Safety guidelines." />
+    <meta property="og:image" content="../../assets/spendora-logo.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Spendora Account & Data Deletion | EasyFlow" />
+    <meta name="twitter:description" content="Official portal to submit an account and associated data deletion request for Spendora under Google Play Data Safety guidelines." />
+    <meta name="twitter:image" content="../../assets/spendora-logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/spendora-logo.png" />
+    <link rel="apple-touch-icon" href="../../assets/spendora-logo.png" />
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-slate-800 antialiased selection:bg-easyflow-100 selection:text-easyflow-800 min-h-screen">
+    <div id="root">
+      <!-- Semantic Static Fallback for Search Engines and Fast Review Crawlers -->
+      <noscript>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #1e293b;">
+          <h1 style="color: #0f172a;">Spendora — Account &amp; Data Deletion Request</h1>
+          <p><strong>Operated by EasyFlow Technologies</strong></p>
+          <p>Spendora provides full data ownership and sovereignty. You can delete your account and all associated cloud financial data at any time.</p>
+          
+          <h2>Method 1: Instant In-App Deletion (Recommended)</h2>
+          <ol>
+            <li>Launch the Spendora app on your Android device.</li>
+            <li>Tap the <strong>Profile / Settings</strong> tab.</li>
+            <li>Select <strong>Account Security</strong> and tap <strong>Delete Account</strong>.</li>
+            <li>Re-authenticate with Google Sign-In or your password when prompted to verify ownership.</li>
+            <li>Confirm deletion. Your account, authentication credentials, and all synchronized cloud Firestore entries (shopping sprees, itemized records, receipt entries) will be permanently purged immediately.</li>
+          </ol>
+
+          <h2>Method 2: Web &amp; Email Deletion Request Portal</h2>
+          <p>If you have uninstalled the app or cannot access your device, submit a manual deletion request:</p>
+          <ol>
+            <li>Open your email application.</li>
+            <li>Send an email to: <a href="mailto:support.easyflow@gmail.com?subject=Spendora%20Account%20%26%20Data%20Deletion%20Request">support.easyflow@gmail.com</a></li>
+            <li>Subject line: <strong>Spendora Account &amp; Data Deletion Request</strong></li>
+            <li>Include your registered Spendora email address or Google Sign-In address. Please do not send passwords or credentials.</li>
+          </ol>
+
+          <h2>What Happens to Your Data?</h2>
+          <ul>
+            <li><strong>Cloud Firestore:</strong> All user records under <code>users/{uid}/...</code> are permanently deleted.</li>
+            <li><strong>Firebase Authentication:</strong> The account record and authentication tokens are revoked and destroyed.</li>
+            <li><strong>Local SQLite Database:</strong> Stored on your device; uninstalling the app or clearing app storage clears the local database completely.</li>
+          </ul>
+
+          <h2>Processing Timeline</h2>
+          <p>Manual web requests are verified and processed within 24–48 business hours. You will receive an email confirmation once the purge is complete.</p>
+
+          <p style="margin-top: 30px;">
+            <a href="mailto:support.easyflow@gmail.com?subject=Spendora%20Account%20%26%20Data%20Deletion%20Request" style="display: inline-block; background-color: #1D4ED8; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+              Submit Account Deletion Request via Email
+            </a>
+          </p>
+        </div>
+      </noscript>
+    </div>
+    <script type="module" src="/src/spendora-delete-account-main.tsx"></script>
+  </body>
+</html>

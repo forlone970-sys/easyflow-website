@@ -16,6 +16,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         medimateDeleteAccount: resolve(__dirname, 'medimate/delete-account/index.html'),
         medimatePrivacyPolicy: resolve(__dirname, 'medimate/privacy-policy/index.html'),
+        spendoraDeleteAccount: resolve(__dirname, 'spendora/delete-account/index.html'),
+        spendoraPrivacyPolicy: resolve(__dirname, 'spendora/privacy-policy/index.html'),
       },
     },
   },
