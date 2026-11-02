@@ -11,10 +11,14 @@ import { MediMateDeleteAccount } from './components/MediMateDeleteAccount';
 import { MediMatePrivacyPolicy } from './components/MediMatePrivacyPolicy';
 import { SpendoraDeleteAccount } from './components/SpendoraDeleteAccount';
 import { SpendoraPrivacyPolicy } from './components/SpendoraPrivacyPolicy';
+import { PromptFlowPage } from './components/PromptFlowPage';
+import { PromptFlowPrivacyPolicy } from './components/PromptFlowPrivacyPolicy';
 import { products } from './data/products';
 import { Product } from './types';
 
 interface RouteState {
+  isPromptFlow: boolean;
+  isPromptFlowPrivacy: boolean;
   isSpendoraPrivacy: boolean;
   isSpendoraDelete: boolean;
   isMediMatePrivacy: boolean;
@@ -24,6 +28,8 @@ interface RouteState {
 const getRouteState = (): RouteState => {
   if (typeof window === 'undefined') {
     return {
+      isPromptFlow: false,
+      isPromptFlowPrivacy: false,
       isSpendoraPrivacy: false,
       isSpendoraDelete: false,
       isMediMatePrivacy: false,
@@ -34,6 +40,10 @@ const getRouteState = (): RouteState => {
   const hash = window.location.hash.toLowerCase();
   const search = window.location.search.toLowerCase();
 
+  const isPromptFlowMatch =
+    path.includes('promptflow') ||
+    hash.includes('promptflow') ||
+    search.includes('promptflow');
   const isSpendora =
     path.includes('spendora') ||
     hash.includes('spendora') ||
@@ -48,10 +58,12 @@ const getRouteState = (): RouteState => {
     search.includes('privacy-policy');
 
   return {
-    isSpendoraPrivacy: isSpendora && isPrivacy,
-    isSpendoraDelete: isSpendora && isDelete,
-    isMediMatePrivacy: !isSpendora && isPrivacy,
-    isMediMateDelete: !isSpendora && isDelete,
+    isPromptFlow: isPromptFlowMatch && !isPrivacy,
+    isPromptFlowPrivacy: isPromptFlowMatch && isPrivacy,
+    isSpendoraPrivacy: !isPromptFlowMatch && isSpendora && isPrivacy,
+    isSpendoraDelete: !isPromptFlowMatch && isSpendora && isDelete,
+    isMediMatePrivacy: !isPromptFlowMatch && !isSpendora && isPrivacy,
+    isMediMateDelete: !isPromptFlowMatch && !isSpendora && isDelete,
   };
 };
 
@@ -105,6 +117,22 @@ export const App: React.FC = () => {
       contactElem.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (routeState.isPromptFlow) {
+    return <PromptFlowPage basePath="./" />;
+  }
+
+  if (routeState.isPromptFlowPrivacy) {
+    return (
+      <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-teal-100 selection:text-teal-900">
+        <Navbar basePath="./" isSubPage={true} />
+        <main className="flex-1">
+          <PromptFlowPrivacyPolicy basePath="./" />
+        </main>
+        <Footer basePath="./" isSubPage={true} />
+      </div>
+    );
+  }
 
   if (routeState.isSpendoraPrivacy) {
     return (

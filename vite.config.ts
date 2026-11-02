@@ -14,6 +14,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        promptflow: resolve(__dirname, 'promptflow/index.html'),
+        promptflowPrivacyPolicy: resolve(__dirname, 'promptflow/privacy-policy/index.html'),
         medimateDeleteAccount: resolve(__dirname, 'medimate/delete-account/index.html'),
         medimatePrivacyPolicy: resolve(__dirname, 'medimate/privacy-policy/index.html'),
         spendoraDeleteAccount: resolve(__dirname, 'spendora/delete-account/index.html'),

@@ -1,6 +1,17 @@
 import React from 'react';
-import { ArrowRight, Mail, Sparkles, Layers, ShieldCheck, Cpu } from 'lucide-react';
+import {
+  ArrowRight,
+  Mail,
+  Sparkles,
+  Layers,
+  ShieldCheck,
+  Cpu,
+  Download,
+  CheckCircle2,
+  Monitor
+} from 'lucide-react';
 import { visibleProducts } from '../data/products';
+import { promptflowDownloadConfig } from '../data/promptflowDownload';
 
 export const Hero: React.FC = () => {
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -14,7 +25,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-gradient-to-b from-easyflow-50/80 via-white to-white"
+      className="relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28 overflow-hidden bg-gradient-to-b from-easyflow-50/80 via-white to-white"
     >
       {/* Background Architectural Elements */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
@@ -31,8 +42,162 @@ export const Hero: React.FC = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-20">
+        
+        {/* ========================================================================= */}
+        {/* 1. MAJOR PROMPTFLOW PRODUCT LAUNCH PRESENTATION                          */}
+        {/* ========================================================================= */}
+        <div className="reveal-on-scroll">
+          <div className="relative rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/90 bg-white/90 shadow-glass overflow-hidden group">
+            {/* Top brand accent ribbon */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-easyflow-600 via-[#008B8B] to-easyflow-accent" />
+
+            {/* Background subtle cyan atmospheric glow */}
+            <div className="absolute -top-24 -right-24 w-80 h-80 bg-teal-100/40 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              
+              {/* Left Column: Product Launch Announcement & CTAs */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                {/* Launch status pill */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase bg-teal-50 text-[#007373] border border-teal-200/80 mb-4 shadow-2xs">
+                  <span className="flex h-2 w-2 rounded-full bg-[#008B8B] animate-pulse" />
+                  <span>NEW LAUNCH • INTRODUCING PROMPTFLOW</span>
+                </div>
+
+                {/* Product Name & Brand Tagline */}
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center p-1.5 shadow-2xs shrink-0">
+                    <img
+                      src="./assets/promptflow-logo.png"
+                      alt="PromptFlow Official Logo"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-easyflow-navy tracking-tight">
+                      PromptFlow
+                    </h2>
+                    <span className="text-xs sm:text-sm font-semibold text-[#007373]">
+                      Think Beyond Words. Engineer Beyond Limits.
+                    </span>
+                  </div>
+                </div>
+
+                {/* Authoritative Narrative Description */}
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed mt-2 mb-6 font-normal">
+                  Not just another prompt editor. PromptFlow is where ideas evolve into precision. Create, refine, test, and master your prompts with an intelligent workspace built for the next generation of AI creators. Featuring handcrafted autocomplete intelligence, intelligent spelling correction, and a powerful developer-inspired environment, PromptFlow transforms the way you interact with AI.
+                </p>
+
+                {/* Micro Feature Matrix */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mb-6 text-xs text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#008B8B] shrink-0" />
+                    <span>Handcrafted Autocomplete Intelligence</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#008B8B] shrink-0" />
+                    <span>Intelligent Spelling Correction</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#008B8B] shrink-0" />
+                    <span>Deterministic 100-Point Test Lab</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#008B8B] shrink-0" />
+                    <span>Visual Workflow Diagram Designer</span>
+                  </div>
+                </div>
+
+                {/* Primary Launch Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3.5 w-full">
+                  {promptflowDownloadConfig.isReleasePublished ? (
+                    <a
+                      href={promptflowDownloadConfig.githubAssetDownloadUrl}
+                      className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-[#008B8B] border border-slate-800 hover:border-[#008B8B] shadow-sm hover:shadow-md transition-all active:scale-[0.98] group w-full sm:w-auto text-center"
+                      title={`Download PromptFlow for Windows (${promptflowDownloadConfig.fileSize})`}
+                    >
+                      <Download className="w-4 h-4 text-[#26B8B8] group-hover:text-white transition-colors" />
+                      <span>Download Now</span>
+                      <span className="text-[11px] font-normal text-slate-300 group-hover:text-white/90 pl-1 border-l border-slate-700">
+                        Windows x64
+                      </span>
+                    </a>
+                  ) : (
+                    <a
+                      href="./promptflow/#download"
+                      className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-[#008B8B] border border-slate-800 hover:border-[#008B8B] shadow-sm hover:shadow-md transition-all active:scale-[0.98] group w-full sm:w-auto text-center"
+                      title="Windows Installer (Pending GitHub Release Publication)"
+                    >
+                      <Download className="w-4 h-4 text-[#26B8B8] group-hover:text-white transition-colors" />
+                      <span>Download</span>
+                      <span className="text-[10px] font-medium text-amber-300 bg-amber-950/70 border border-amber-800/60 px-1.5 py-0.5 rounded">
+                        Pending Release
+                      </span>
+                    </a>
+                  )}
+
+                  <a
+                    href="./promptflow/"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-easyflow-700 bg-easyflow-50 hover:bg-easyflow-100 border border-easyflow-200 transition-all active:scale-[0.98] w-full sm:w-auto text-center group"
+                  >
+                    <span>Explore PromptFlow</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
+
+                  <span className="text-[11px] text-slate-500 flex items-center gap-1.5 w-full sm:w-auto pt-1 sm:pt-0">
+                    <Monitor className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Windows 10 / 11 (64-bit) • v{promptflowDownloadConfig.version} • {promptflowDownloadConfig.fileSize}</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Column: Actual Application Screenshot Preview */}
+              <div className="lg:col-span-5 relative">
+                <a
+                  href="./promptflow/"
+                  className="block relative rounded-2xl overflow-hidden border border-slate-800 shadow-xl group/preview transition-transform hover:scale-[1.01] duration-300"
+                  title="View Dedicated PromptFlow Product Showcase"
+                >
+                  {/* Mockup Window Titlebar */}
+                  <div className="bg-slate-900 px-3.5 py-2 flex items-center justify-between border-b border-slate-800 text-[11px] text-slate-400 font-mono select-none">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+                      <span className="ml-2 font-sans font-medium text-slate-300 text-[10px]">PromptFlow Workspace</span>
+                    </div>
+                    <span className="text-[10px] text-teal-400 bg-teal-950/60 px-2 py-0.5 rounded border border-teal-800/40">
+                      100% Offline
+                    </span>
+                  </div>
+
+                  {/* Real screenshot from the desktop app */}
+                  <div className="relative bg-slate-950 aspect-[16/10] overflow-hidden">
+                    <img
+                      src="./assets/promptflow-editor-preview.png"
+                      alt="PromptFlow Desktop IDE Screenshot Preview"
+                      className="w-full h-full object-cover object-top group-hover/preview:scale-105 transition-transform duration-500"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-4">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900/90 text-white text-xs font-semibold backdrop-blur-xs border border-slate-700">
+                        <span>Click to View Product Showcase</span>
+                        <ArrowRight className="w-3 h-3 text-[#26B8B8]" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* 2. EASYFLOW PARENT STARTUP PRESENTATION & ECOSYSTEM NETWORK             */}
+        {/* ========================================================================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center pt-4">
           
           {/* Left Column: Brand Copy & Actions */}
           <div className="lg:col-span-7 flex flex-col items-start text-left reveal-on-scroll">
@@ -65,7 +230,7 @@ export const Hero: React.FC = () => {
                 onClick={(e) => handleScrollTo(e, '#products')}
                 className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-sm hover:shadow-card-hover transition-all active:scale-[0.98] group w-full sm:w-auto text-center"
               >
-                <span>Explore Our Products</span>
+                <span>Explore Full Portfolio</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
 
@@ -135,9 +300,17 @@ export const Hero: React.FC = () => {
                   {visibleProducts.map((p) => (
                     <a
                       key={p.id}
-                      href="#products"
-                      onClick={(e) => handleScrollTo(e, '#products')}
-                      className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/70 hover:bg-easyflow-50/80 border border-slate-200/70 hover:border-easyflow-300 transition-all text-left group/node"
+                      href={p.id === 'promptflow' ? './promptflow/' : '#products'}
+                      onClick={(e) => {
+                        if (p.id !== 'promptflow') {
+                          handleScrollTo(e, '#products');
+                        }
+                      }}
+                      className={`flex items-center gap-2.5 p-2.5 rounded-xl border transition-all text-left group/node ${
+                        p.id === 'promptflow'
+                          ? 'bg-teal-50/60 hover:bg-teal-50 border-teal-200'
+                          : 'bg-white/70 hover:bg-easyflow-50/80 border-slate-200/70 hover:border-easyflow-300'
+                      }`}
                     >
                       <div
                         className={`w-8 h-8 rounded-lg p-0.5 shrink-0 overflow-hidden flex items-center justify-center border ${
@@ -153,8 +326,11 @@ export const Hero: React.FC = () => {
                         />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-xs font-bold text-slate-800 truncate group-hover/node:text-easyflow-600 transition-colors">
-                          {p.name}
+                        <div className="text-xs font-bold text-slate-800 truncate group-hover/node:text-easyflow-600 transition-colors flex items-center gap-1">
+                          <span>{p.name}</span>
+                          {p.id === 'promptflow' && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#008B8B]" />
+                          )}
                         </div>
                         <div className="text-[10px] text-slate-500 truncate">
                           {p.category.split('/')[0].trim()}
@@ -183,6 +359,7 @@ export const Hero: React.FC = () => {
           </div>
 
         </div>
+
       </div>
     </section>
   );

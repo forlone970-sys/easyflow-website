@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./medimate/**/*.html",
     "./spendora/**/*.html",
+    "./promptflow/**/*.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -26,6 +27,24 @@ export default {
           slate: '#475569',
           border: '#E2E8F0',
           ice: '#F8FAFC',
+        },
+        promptflow: {
+          50: '#F0F9F9',
+          100: '#E0F4F4',
+          200: '#B2EBEB',
+          300: '#75D7D7',
+          400: '#26B8B8',
+          500: '#009E9E',
+          600: '#008B8B', // Dark Cyan Primary
+          700: '#007373',
+          800: '#005959',
+          900: '#003D3D',
+          950: '#062020',
+          accent: '#008B8B',
+          charcoal: '#121619',
+          surface: '#181C20',
+          panel: '#1E2328',
+          border: '#2A313A',
         }
       },
       fontFamily: {
@@ -39,6 +58,9 @@ export default {
         'card': '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03)',
         'card-hover': '0 16px 36px -4px rgba(29, 78, 216, 0.12), 0 6px 12px -2px rgba(15, 23, 42, 0.05)',
         'elevated': '0 20px 40px -15px rgba(29, 78, 216, 0.15)',
+        'pf-glass': '0 8px 32px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.8)',
+        'pf-glass-hover': '0 16px 36px -4px rgba(0, 139, 139, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.95)',
+        'pf-glow': '0 0 25px -5px rgba(0, 139, 139, 0.35)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',

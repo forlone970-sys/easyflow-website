@@ -102,6 +102,24 @@ export const Footer: React.FC<FooterProps> = ({ basePath = './', isSubPage = fal
               </li>
               <li className="pt-2 border-t border-slate-800/80">
                 <a
+                  href={`${basePath}promptflow/`}
+                  className="hover:text-teal-300 text-slate-300 font-medium transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#008B8B] shrink-0"></span>
+                  <span>PromptFlow Desktop</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${basePath}promptflow/privacy-policy/`}
+                  className="hover:text-teal-300 text-slate-300 font-medium transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#008B8B] shrink-0"></span>
+                  <span>PromptFlow Privacy Policy</span>
+                </a>
+              </li>
+              <li className="pt-1">
+                <a
                   href={`${basePath}spendora/privacy-policy/`}
                   className="hover:text-easyflow-accent text-slate-300 font-medium transition-colors flex items-center gap-1.5"
                 >

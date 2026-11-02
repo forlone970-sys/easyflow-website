@@ -154,6 +154,55 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
             </div>
           )}
 
+          {/* PromptFlow Dedicated Page & Resources */}
+          {product.id === 'promptflow' && (
+            <div className="space-y-3">
+              <div className="p-4 rounded-2xl bg-easyflow-50/70 border border-easyflow-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <Sparkles className="w-4 h-4 text-easyflow-600 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-easyflow-navy uppercase tracking-wide">
+                      PromptFlow Dedicated Product Experience
+                    </div>
+                    <div className="text-xs text-slate-600 mt-0.5">
+                      Explore the complete desktop IDE, video demo, Windows download, and user manual.
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="./promptflow/"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
+                >
+                  <span>Explore PromptFlow</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <ShieldCheck className="w-4 h-4 text-easyflow-600 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-easyflow-navy uppercase tracking-wide">
+                      PromptFlow Privacy Policy
+                    </div>
+                    <div className="text-xs text-slate-600 mt-0.5">
+                      Review our 100% local-first data sovereignty and zero-telemetry commitments.
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="./promptflow/privacy-policy/"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-easyflow-700 bg-white hover:bg-easyflow-50 border border-slate-200 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
+                >
+                  <span>View Privacy Policy</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          )}
+
           {/* Spendora Privacy Policy & Account Deletion Resources */}
           {product.id === 'spendora' && (
             <div className="space-y-3">

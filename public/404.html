@@ -12,6 +12,16 @@
         var isRepoSubpath = segments[0] === 'easyflow-website';
         var prefix = isRepoSubpath ? '/easyflow-website' : '';
 
+        // PromptFlow routes
+        if (path.indexOf('promptflow') !== -1) {
+          if (path.indexOf('privacy-policy') !== -1) {
+            window.location.replace(prefix + '/promptflow/privacy-policy/');
+            return;
+          }
+          window.location.replace(prefix + '/promptflow/');
+          return;
+        }
+
         // Spendora routes
         if (path.indexOf('spendora') !== -1) {
           if (path.indexOf('delete-account') !== -1) {

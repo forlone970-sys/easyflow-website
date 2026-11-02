@@ -12,7 +12,7 @@ export interface Product {
   fullDescription: string;
   logo: string;
   logoTheme: 'light' | 'dark';
-  status: 'In Development' | 'Coming Soon' | 'Prototype Concept';
+  status: 'In Development' | 'Coming Soon' | 'Prototype Concept' | 'New Launch' | 'Available Now';
   features: FeatureItem[];
   highlights: string[];
   disclaimer?: string;
