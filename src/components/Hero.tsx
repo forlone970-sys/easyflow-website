@@ -13,7 +13,11 @@ import {
 import { visibleProducts } from '../data/products';
 import { promptflowDownloadConfig } from '../data/promptflowDownload';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onPromptFlowDownload?: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onPromptFlowDownload }) => {
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const elem = document.querySelector(id);
@@ -114,6 +118,12 @@ export const Hero: React.FC = () => {
                   {promptflowDownloadConfig.isReleasePublished ? (
                     <a
                       href={promptflowDownloadConfig.githubAssetDownloadUrl}
+                      onClick={(e) => {
+                        if (onPromptFlowDownload) {
+                          e.preventDefault();
+                          onPromptFlowDownload();
+                        }
+                      }}
                       className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-[#008B8B] border border-slate-800 hover:border-[#008B8B] shadow-sm hover:shadow-md transition-all active:scale-[0.98] group w-full sm:w-auto text-center"
                       title={`Download PromptFlow for Windows (${promptflowDownloadConfig.fileSize})`}
                     >
@@ -127,7 +137,7 @@ export const Hero: React.FC = () => {
                     <a
                       href="./promptflow/#download"
                       className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900 hover:bg-[#008B8B] border border-slate-800 hover:border-[#008B8B] shadow-sm hover:shadow-md transition-all active:scale-[0.98] group w-full sm:w-auto text-center"
-                      title="Windows Installer (Pending GitHub Release Publication)"
+                      title="Windows Installer (Pending Release)"
                     >
                       <Download className="w-4 h-4 text-[#26B8B8] group-hover:text-white transition-colors" />
                       <span>Download</span>

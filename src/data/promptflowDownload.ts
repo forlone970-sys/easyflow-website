@@ -32,15 +32,31 @@ export const promptflowDownloadConfig: PromptFlowDownloadConfig = {
   installerFilename: 'PromptFlow_0.1.0_x64-setup.exe',
   installerType: 'NSIS Setup Executable (.exe)',
   status: 'available',
-  statusLabel: 'Available on GitHub Releases',
+  statusLabel: 'Available for Windows',
   statusDescription:
-    'PromptFlow v0.1.0 for Windows is officially published on GitHub Releases. Download the verified installer directly from GitHub.',
-  githubRepoUrl: 'https://github.com/forlone970-sys/easyflow-website',
-  githubReleaseUrl: 'https://github.com/forlone970-sys/easyflow-website/releases',
+    'PromptFlow v0.1.0 for Windows is officially released. Download the standalone installer directly from EasyFlow.',
+  githubRepoUrl: '',
+  githubReleaseUrl: '',
   githubAssetDownloadUrl:
     'https://github.com/forlone970-sys/easyflow-website/releases/download/v0.1.0/PromptFlow_0.1.0_x64-setup.exe',
   isReleasePublished: true,
   sha256Checksum: '7032a956d28322c3b153eecd2249df4208cc97ade3c482cc5bdbf1202684fc0a',
   analyticsNotes:
-    'Installer downloads are natively tracked by GitHub Releases per asset download event (GET /repos/{owner}/{repo}/releases). Each download increments the asset download_count. This measures total download events without user accounts or tracking cookies.'
+    'Installer downloads are natively tracked per asset download event. Each download increments the total asset download count without user accounts or tracking cookies.'
+};
+
+export const triggerPromptFlowDownload = (): void => {
+  if (typeof window === 'undefined') return;
+  const link = document.createElement('a');
+  link.href = promptflowDownloadConfig.githubAssetDownloadUrl;
+  link.setAttribute('download', promptflowDownloadConfig.installerFilename);
+  link.setAttribute('rel', 'noopener noreferrer');
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  window.setTimeout(() => {
+    if (document.body.contains(link)) {
+      document.body.removeChild(link);
+    }
+  }, 1000);
 };

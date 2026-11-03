@@ -17,7 +17,6 @@ import {
   VolumeX,
   Play,
   Pause,
-  ExternalLink,
   Sparkles,
   FileCode,
   Monitor,
@@ -25,6 +24,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { PromptFlowSmartScreenModal } from './PromptFlowSmartScreenModal';
 import { promptflowDownloadConfig } from '../data/promptflowDownload';
 import {
   promptflowWorkspaces,
@@ -40,6 +40,7 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
   const [activeManualTab, setActiveManualTab] = useState<'workspaces' | 'rubric' | 'workflows' | 'shortcuts'>('workspaces');
   const [isVideoMuted, setIsVideoMuted] = useState(true);
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isSmartScreenModalOpen, setIsSmartScreenModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const toggleVideoMute = () => {
@@ -131,6 +132,10 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
                 {promptflowDownloadConfig.isReleasePublished ? (
                   <a
                     href={promptflowDownloadConfig.githubAssetDownloadUrl}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsSmartScreenModalOpen(true);
+                    }}
                     className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-bold text-white bg-[#008B8B] hover:bg-[#007373] shadow-lg hover:shadow-pf-glow transition-all active:scale-[0.98] text-base"
                   >
                     <Download className="w-5 h-5 text-teal-200" />
@@ -491,6 +496,10 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
                   {promptflowDownloadConfig.isReleasePublished ? (
                     <a
                       href={promptflowDownloadConfig.githubAssetDownloadUrl}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsSmartScreenModalOpen(true);
+                      }}
                       className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white bg-[#008B8B] hover:bg-[#007373] shadow-lg hover:shadow-pf-glow transition-all active:scale-[0.98] text-base"
                     >
                       <Download className="w-5 h-5 text-teal-200" />
@@ -500,31 +509,16 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
                       </span>
                     </a>
                   ) : (
-                    <a
-                      href={promptflowDownloadConfig.githubReleaseUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-amber-100 bg-slate-800 hover:bg-slate-750 border border-amber-500/30 shadow-md transition-all active:scale-[0.98] text-sm sm:text-base"
-                    >
-                      <ExternalLink className="w-4 h-4 text-amber-400" />
-                      <span>Awaiting GitHub Release v{promptflowDownloadConfig.version}</span>
-                    </a>
+                    <div className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-amber-100 bg-slate-800 border border-amber-500/30 shadow-md text-sm sm:text-base">
+                      <AlertCircle className="w-4 h-4 text-amber-400" />
+                      <span>Release Pending v{promptflowDownloadConfig.version}</span>
+                    </div>
                   )}
-
-                  <a
-                    href={promptflowDownloadConfig.githubReleaseUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl font-semibold text-slate-300 bg-slate-800 hover:bg-slate-750 border border-slate-750 transition-all text-sm"
-                  >
-                    <span>View GitHub Releases</span>
-                    <ExternalLink className="w-4 h-4 text-slate-400" />
-                  </a>
                 </div>
 
                 {/* Download Analytics Note */}
                 <p className="text-[11px] text-slate-400 leading-relaxed pt-2">
-                  <strong>Download Tracking Transparency:</strong> EasyFlow tracks installer download totals directly via GitHub Releases assets (<code className="text-teal-300 font-mono">download_count</code>). We do not collect telemetry, install cookies, or create mandatory user accounts. Each download count represents a total download event from GitHub&apos;s CDN, not unique individuals.
+                  <strong>Download Tracking Transparency:</strong> EasyFlow tracks installer download totals directly via release asset metrics (<code className="text-teal-300 font-mono">download_count</code>). We do not collect telemetry, install cookies, or create mandatory user accounts. Each count represents a total download event from the distribution CDN, not unique individuals.
                 </p>
               </div>
             </div>
@@ -750,6 +744,12 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
 
       {/* Dedicated Subpage Footer */}
       <Footer basePath={basePath} isSubPage={true} />
+
+      {/* PromptFlow Windows SmartScreen Installation Notice Modal */}
+      <PromptFlowSmartScreenModal
+        isOpen={isSmartScreenModalOpen}
+        onClose={() => setIsSmartScreenModalOpen(false)}
+      />
     </div>
   );
 };

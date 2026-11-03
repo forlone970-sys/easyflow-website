@@ -7,12 +7,11 @@ import { ProductModal } from './components/ProductModal';
 import { Vision } from './components/Vision';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { MediMateDeleteAccount } from './components/MediMateDeleteAccount';
-import { MediMatePrivacyPolicy } from './components/MediMatePrivacyPolicy';
 import { SpendoraDeleteAccount } from './components/SpendoraDeleteAccount';
 import { SpendoraPrivacyPolicy } from './components/SpendoraPrivacyPolicy';
 import { PromptFlowPage } from './components/PromptFlowPage';
 import { PromptFlowPrivacyPolicy } from './components/PromptFlowPrivacyPolicy';
+import { PromptFlowSmartScreenModal } from './components/PromptFlowSmartScreenModal';
 import { products } from './data/products';
 import { Product } from './types';
 
@@ -21,8 +20,6 @@ interface RouteState {
   isPromptFlowPrivacy: boolean;
   isSpendoraPrivacy: boolean;
   isSpendoraDelete: boolean;
-  isMediMatePrivacy: boolean;
-  isMediMateDelete: boolean;
 }
 
 const getRouteState = (): RouteState => {
@@ -32,8 +29,6 @@ const getRouteState = (): RouteState => {
       isPromptFlowPrivacy: false,
       isSpendoraPrivacy: false,
       isSpendoraDelete: false,
-      isMediMatePrivacy: false,
-      isMediMateDelete: false,
     };
   }
   const path = window.location.pathname.toLowerCase();
@@ -62,14 +57,13 @@ const getRouteState = (): RouteState => {
     isPromptFlowPrivacy: isPromptFlowMatch && isPrivacy,
     isSpendoraPrivacy: !isPromptFlowMatch && isSpendora && isPrivacy,
     isSpendoraDelete: !isPromptFlowMatch && isSpendora && isDelete,
-    isMediMatePrivacy: !isPromptFlowMatch && !isSpendora && isPrivacy,
-    isMediMateDelete: !isPromptFlowMatch && !isSpendora && isDelete,
   };
 };
 
 export const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [routeState, setRouteState] = useState<RouteState>(getRouteState);
+  const [isPromptFlowSmartScreenOpen, setIsPromptFlowSmartScreenOpen] = useState(false);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -158,30 +152,6 @@ export const App: React.FC = () => {
     );
   }
 
-  if (routeState.isMediMatePrivacy) {
-    return (
-      <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
-        <Navbar basePath="./" isSubPage={true} />
-        <main className="flex-1">
-          <MediMatePrivacyPolicy basePath="./" />
-        </main>
-        <Footer basePath="./" isSubPage={true} />
-      </div>
-    );
-  }
-
-  if (routeState.isMediMateDelete) {
-    return (
-      <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
-        <Navbar basePath="./" isSubPage={true} />
-        <main className="flex-1">
-          <MediMateDeleteAccount basePath="./" />
-        </main>
-        <Footer basePath="./" isSubPage={true} />
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-white text-slate-800 flex flex-col font-sans selection:bg-easyflow-100 selection:text-easyflow-800">
       {/* Sticky Top Navigation */}
@@ -189,11 +159,12 @@ export const App: React.FC = () => {
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        <Hero />
+        <Hero onPromptFlowDownload={() => setIsPromptFlowSmartScreenOpen(true)} />
         <About />
         <Products
           products={products}
           onSelectProduct={(product) => setSelectedProduct(product)}
+          onPromptFlowDownload={() => setIsPromptFlowSmartScreenOpen(true)}
         />
         <Vision />
         <Contact />
@@ -207,6 +178,13 @@ export const App: React.FC = () => {
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
         onContactClick={handleContactFromModal}
+        onPromptFlowDownload={() => setIsPromptFlowSmartScreenOpen(true)}
+      />
+
+      {/* PromptFlow Windows SmartScreen Installation Notice Modal */}
+      <PromptFlowSmartScreenModal
+        isOpen={isPromptFlowSmartScreenOpen}
+        onClose={() => setIsPromptFlowSmartScreenOpen(false)}
       />
     </div>
   );

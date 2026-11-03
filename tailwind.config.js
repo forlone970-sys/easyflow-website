@@ -2,7 +2,6 @@
 export default {
   content: [
     "./index.html",
-    "./medimate/**/*.html",
     "./spendora/**/*.html",
     "./promptflow/**/*.html",
     "./src/**/*.{js,ts,jsx,tsx}",

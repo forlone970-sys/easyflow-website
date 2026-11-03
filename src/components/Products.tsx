@@ -1,13 +1,19 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles, Download } from 'lucide-react';
 import { Product } from '../types';
+import { promptflowDownloadConfig } from '../data/promptflowDownload';
 
 interface ProductsProps {
   products: Product[];
   onSelectProduct: (product: Product) => void;
+  onPromptFlowDownload?: () => void;
 }
 
-export const Products: React.FC<ProductsProps> = ({ products, onSelectProduct }) => {
+export const Products: React.FC<ProductsProps> = ({
+  products,
+  onSelectProduct,
+  onPromptFlowDownload,
+}) => {
   const visibleList = products.filter((p) => p.isVisible !== false);
 
   return (
@@ -24,7 +30,7 @@ export const Products: React.FC<ProductsProps> = ({ products, onSelectProduct })
           </h2>
           <div className="w-12 h-1 bg-easyflow-600 rounded-full mx-auto mt-4 mb-6"></div>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Explore our ecosystem of purpose-built applications developed to address real challenges across smart personal budgeting, healthcare routines, augmented reality dining, and intelligent navigation.
+            Explore our ecosystem of purpose-built software, featuring PromptFlow for desktop prompt engineering and Spendora for intentional personal budgeting.
           </p>
         </div>
 
@@ -42,7 +48,14 @@ export const Products: React.FC<ProductsProps> = ({ products, onSelectProduct })
                 {product.id === 'promptflow' && (
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white bg-easyflow-600 shadow-2xs mb-4">
                     <Sparkles className="w-3 h-3 text-easyflow-accent" />
-                    <span>NEW LAUNCH • DESKTOP APP</span>
+                    <span>AVAILABLE NOW • DESKTOP APP</span>
+                  </div>
+                )}
+
+                {product.id === 'spendora' && (
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-amber-900 bg-amber-50 border border-amber-200 shadow-2xs mb-4">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                    <span>IN DEVELOPMENT</span>
                   </div>
                 )}
 
@@ -105,6 +118,17 @@ export const Products: React.FC<ProductsProps> = ({ products, onSelectProduct })
                 <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto justify-end">
                   {product.id === 'promptflow' && (
                     <>
+                      {promptflowDownloadConfig.isReleasePublished && onPromptFlowDownload && (
+                        <button
+                          type="button"
+                          onClick={onPromptFlowDownload}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-slate-900 hover:bg-[#008B8B] transition-all shadow-2xs group/btn"
+                          title={`Download PromptFlow for Windows (${promptflowDownloadConfig.fileSize})`}
+                        >
+                          <Download className="w-3.5 h-3.5 text-[#26B8B8] group-hover/btn:text-white transition-colors" />
+                          <span>Download</span>
+                        </button>
+                      )}
                       <a
                         href="./promptflow/"
                         className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-easyflow-600 hover:bg-easyflow-700 transition-all shadow-2xs group/btn"
@@ -136,25 +160,6 @@ export const Products: React.FC<ProductsProps> = ({ products, onSelectProduct })
                         href="./spendora/delete-account/"
                         className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-rose-700 hover:text-white bg-rose-50 hover:bg-rose-600 border border-rose-200 hover:border-rose-600 transition-all shadow-2xs"
                         title="Spendora Account & Data Deletion Portal"
-                      >
-                        <span>Data Deletion</span>
-                      </a>
-                    </>
-                  )}
-
-                  {product.id === 'medimate' && (
-                    <>
-                      <a
-                        href="./medimate/privacy-policy/"
-                        className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-easyflow-700 hover:text-white bg-easyflow-50 hover:bg-easyflow-600 border border-easyflow-200 hover:border-easyflow-600 transition-all shadow-2xs"
-                        title="MediMate Privacy Policy"
-                      >
-                        <span>Privacy Policy</span>
-                      </a>
-                      <a
-                        href="./medimate/delete-account/"
-                        className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-rose-700 hover:text-white bg-rose-50 hover:bg-rose-600 border border-rose-200 hover:border-rose-600 transition-all shadow-2xs"
-                        title="MediMate Account & Data Deletion Portal"
                       >
                         <span>Data Deletion</span>
                       </a>

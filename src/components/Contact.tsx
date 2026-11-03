@@ -154,7 +154,7 @@ export const Contact: React.FC = () => {
                   type="text"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  placeholder="e.g. Partnership inquiry regarding MediMate"
+                  placeholder="e.g. Partnership inquiry regarding PromptFlow"
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:border-easyflow-600 focus:ring-1 focus:ring-easyflow-600 transition-colors"
                 />
               </div>

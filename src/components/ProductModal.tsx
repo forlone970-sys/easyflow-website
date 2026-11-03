@@ -1,14 +1,21 @@
 import React, { useEffect, useRef } from 'react';
-import { X, CheckCircle2, AlertCircle, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, ArrowRight, Sparkles, ShieldCheck, Download } from 'lucide-react';
 import { Product } from '../types';
+import { promptflowDownloadConfig } from '../data/promptflowDownload';
 
 interface ProductModalProps {
   product: Product | null;
   onClose: () => void;
   onContactClick?: () => void;
+  onPromptFlowDownload?: () => void;
 }
 
-export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, onContactClick }) => {
+export const ProductModal: React.FC<ProductModalProps> = ({
+  product,
+  onClose,
+  onContactClick,
+  onPromptFlowDownload,
+}) => {
   const dialogRef = useRef<HTMLDivElement>(null);
 
   // Platform Esc key listener & body scroll lock
@@ -170,13 +177,26 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
                   </div>
                 </div>
 
-                <a
-                  href="./promptflow/"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
-                >
-                  <span>Explore PromptFlow</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                <div className="flex items-center gap-2 flex-wrap shrink-0 self-start sm:self-auto">
+                  {promptflowDownloadConfig.isReleasePublished && onPromptFlowDownload && (
+                    <button
+                      type="button"
+                      onClick={onPromptFlowDownload}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-white bg-slate-900 hover:bg-[#008B8B] shadow-2xs transition-colors"
+                      title={`Download PromptFlow for Windows (${promptflowDownloadConfig.fileSize})`}
+                    >
+                      <Download className="w-3.5 h-3.5 text-[#26B8B8]" />
+                      <span>Download for Windows</span>
+                    </button>
+                  )}
+                  <a
+                    href="./promptflow/"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-2xs transition-colors"
+                  >
+                    <span>Explore PromptFlow</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
 
               <div className="p-4 rounded-2xl bg-slate-50/70 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -243,55 +263,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, on
 
                 <a
                   href="./spendora/delete-account/"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
-                >
-                  <span>Request Deletion</span>
-                  <ArrowRight className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-          )}
-
-          {/* MediMate Privacy Policy & Account Deletion Resources */}
-          {product.id === 'medimate' && (
-            <div className="space-y-3">
-              <div className="p-4 rounded-2xl bg-easyflow-50/70 border border-easyflow-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-easyflow-600 shrink-0 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-easyflow-navy uppercase tracking-wide">
-                      MediMate Privacy Policy
-                    </div>
-                    <div className="text-xs text-slate-600 mt-0.5">
-                      Review how personal and medication data is collected, stored, and protected.
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="./medimate/privacy-policy/"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-easyflow-600 hover:bg-easyflow-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
-                >
-                  <span>View Privacy Policy</span>
-                  <ArrowRight className="w-3 h-3" />
-                </a>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                  <div>
-                    <div className="text-xs font-bold text-rose-950 uppercase tracking-wide">
-                      Account & Data Safety
-                    </div>
-                    <div className="text-xs text-rose-800 mt-0.5">
-                      Need to request deletion of your MediMate account and associated data?
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="./medimate/delete-account/"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 shadow-2xs transition-colors shrink-0 self-start sm:self-auto"
                 >
                   <span>Request Deletion</span>
