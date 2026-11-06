@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, CheckCircle2, Sparkles, Download } from 'lucide-react';
 import { Product } from '../types';
 import { promptflowDownloadConfig } from '../data/promptflowDownload';
+import { trackPromptFlowDownloadClick } from '../utils/analytics';
 
 interface ProductsProps {
   products: Product[];
@@ -121,7 +122,13 @@ export const Products: React.FC<ProductsProps> = ({
                       {promptflowDownloadConfig.isReleasePublished && onPromptFlowDownload && (
                         <button
                           type="button"
-                          onClick={onPromptFlowDownload}
+                          onClick={() => {
+                            trackPromptFlowDownloadClick({
+                              button_location: 'home_products_card',
+                              destination_url: promptflowDownloadConfig.githubAssetDownloadUrl,
+                            });
+                            onPromptFlowDownload();
+                          }}
                           className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-slate-900 hover:bg-[#008B8B] transition-all shadow-2xs group/btn"
                           title={`Download PromptFlow for Windows (${promptflowDownloadConfig.fileSize})`}
                         >

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { visibleProducts } from '../data/products';
 import { promptflowDownloadConfig } from '../data/promptflowDownload';
+import { trackPromptFlowDownloadClick } from '../utils/analytics';
 
 interface HeroProps {
   onPromptFlowDownload?: () => void;
@@ -119,6 +120,10 @@ export const Hero: React.FC<HeroProps> = ({ onPromptFlowDownload }) => {
                     <a
                       href={promptflowDownloadConfig.githubAssetDownloadUrl}
                       onClick={(e) => {
+                        trackPromptFlowDownloadClick({
+                          button_location: 'home_hero',
+                          destination_url: promptflowDownloadConfig.githubAssetDownloadUrl,
+                        });
                         if (onPromptFlowDownload) {
                           e.preventDefault();
                           onPromptFlowDownload();

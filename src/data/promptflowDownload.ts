@@ -1,3 +1,5 @@
+import { trackInstallerDownload } from '../utils/analytics';
+
 export interface PromptFlowDownloadConfig {
   productName: string;
   version: string;
@@ -47,11 +49,22 @@ export const promptflowDownloadConfig: PromptFlowDownloadConfig = {
 
 export const triggerPromptFlowDownload = (): void => {
   if (typeof window === 'undefined') return;
+
+  // Track official GA4 installer_download conversion event (Event B)
+  trackInstallerDownload({
+    product_name: promptflowDownloadConfig.productName,
+    file_name: promptflowDownloadConfig.installerFilename,
+    file_extension: 'exe',
+    link_url: promptflowDownloadConfig.githubAssetDownloadUrl,
+  });
+
   const link = document.createElement('a');
   link.href = promptflowDownloadConfig.githubAssetDownloadUrl;
   link.setAttribute('download', promptflowDownloadConfig.installerFilename);
   link.setAttribute('rel', 'noopener noreferrer');
   link.style.display = 'none';
+  // Prevent synthetic click from bubbling to document-level listeners (ensures GA4 Enhanced Measurement does not misclassify as generic outbound click)
+  link.addEventListener('click', (e) => e.stopPropagation());
   document.body.appendChild(link);
   link.click();
   window.setTimeout(() => {

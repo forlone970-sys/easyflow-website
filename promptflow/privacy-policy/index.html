@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P274PEFPVK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P274PEFPVK', {
+        anonymize_ip: true,
+        debug_mode: window.location.search.indexOf('debug_mode=true') !== -1 || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      });
+    </script>
+    
     <!-- Primary Meta Tags -->
     <title>PromptFlow Privacy Policy | EasyFlow</title>
     <meta name="title" content="PromptFlow Privacy Policy | EasyFlow" />

@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Not Found | EasyFlow</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P274PEFPVK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P274PEFPVK', {
+        anonymize_ip: true,
+        debug_mode: window.location.search.indexOf('debug_mode=true') !== -1 || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      });
+    </script>
     <script>
       // Single Page App routing & subpath fallback for GitHub Pages
       (function() {
@@ -11,25 +23,27 @@
         var segments = window.location.pathname.split('/').filter(Boolean);
         var isRepoSubpath = segments[0] === 'easyflow-website';
         var prefix = isRepoSubpath ? '/easyflow-website' : '';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
 
-        // PromptFlow routes
+        // PromptFlow routes (preserve query parameters and hash for UTM campaign attribution)
         if (path.indexOf('promptflow') !== -1) {
           if (path.indexOf('privacy-policy') !== -1) {
-            window.location.replace(prefix + '/promptflow/privacy-policy/');
+            window.location.replace(prefix + '/promptflow/privacy-policy/' + search + hash);
             return;
           }
-          window.location.replace(prefix + '/promptflow/');
+          window.location.replace(prefix + '/promptflow/' + search + hash);
           return;
         }
 
         // Spendora routes
         if (path.indexOf('spendora') !== -1) {
           if (path.indexOf('delete-account') !== -1) {
-            window.location.replace(prefix + '/spendora/delete-account/');
+            window.location.replace(prefix + '/spendora/delete-account/' + search + hash);
             return;
           }
           if (path.indexOf('privacy-policy') !== -1) {
-            window.location.replace(prefix + '/spendora/privacy-policy/');
+            window.location.replace(prefix + '/spendora/privacy-policy/' + search + hash);
             return;
           }
         }
