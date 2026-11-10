@@ -12,6 +12,7 @@ import { SpendoraPrivacyPolicy } from './components/SpendoraPrivacyPolicy';
 import { PromptFlowPage } from './components/PromptFlowPage';
 import { PromptFlowPrivacyPolicy } from './components/PromptFlowPrivacyPolicy';
 import { PromptFlowSmartScreenModal } from './components/PromptFlowSmartScreenModal';
+import { triggerPromptFlowDownload } from './data/promptflowDownload';
 import { products } from './data/products';
 import { Product } from './types';
 
@@ -112,6 +113,11 @@ export const App: React.FC = () => {
     }
   };
 
+  const handlePromptFlowDownload = () => {
+    triggerPromptFlowDownload();
+    setIsPromptFlowSmartScreenOpen(true);
+  };
+
   if (routeState.isPromptFlow) {
     return <PromptFlowPage basePath="./" />;
   }
@@ -159,12 +165,12 @@ export const App: React.FC = () => {
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        <Hero onPromptFlowDownload={() => setIsPromptFlowSmartScreenOpen(true)} />
+        <Hero onPromptFlowDownload={handlePromptFlowDownload} />
         <About />
         <Products
           products={products}
           onSelectProduct={(product) => setSelectedProduct(product)}
-          onPromptFlowDownload={() => setIsPromptFlowSmartScreenOpen(true)}
+          onPromptFlowDownload={handlePromptFlowDownload}
         />
         <Vision />
         <Contact />
@@ -178,7 +184,7 @@ export const App: React.FC = () => {
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
         onContactClick={handleContactFromModal}
-        onPromptFlowDownload={() => setIsPromptFlowSmartScreenOpen(true)}
+        onPromptFlowDownload={handlePromptFlowDownload}
       />
 
       {/* PromptFlow Windows SmartScreen Installation Notice Modal */}

@@ -1,16 +1,22 @@
+/**
+ * PromptFlowSmartScreenModal
+ * 
+ * Displays the Windows SmartScreen installation notice immediately after the installer
+ * download is initiated via triggerPromptFlowDownload() upon CTA click.
+ * 
+ * Provides professional explanation of the initial unverified publisher SmartScreen warning,
+ * displays the SHA-256 checksum for independent verification, and provides a single
+ * "Acknowledged" action button to dismiss the modal without initiating duplicate downloads.
+ */
 import React, { useEffect, useRef, useState } from 'react';
 import {
   AlertTriangle,
-  Download,
   X,
   Copy,
   Check,
   FileCheck2,
 } from 'lucide-react';
-import {
-  promptflowDownloadConfig,
-  triggerPromptFlowDownload,
-} from '../data/promptflowDownload';
+import { promptflowDownloadConfig } from '../data/promptflowDownload';
 
 export interface PromptFlowSmartScreenModalProps {
   isOpen: boolean;
@@ -21,14 +27,11 @@ export interface PromptFlowSmartScreenModalProps {
 export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProps> = ({
   isOpen,
   onClose,
-  onDownloadStarted,
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
-  const continueButtonRef = useRef<HTMLButtonElement>(null);
+  const acknowledgedButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
-  const [isInitiating, setIsInitiating] = useState(false);
-  const isInitiatingRef = useRef(false);
   const [copiedChecksum, setCopiedChecksum] = useState(false);
 
   // Focus trap and lifecycle management
@@ -37,8 +40,6 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
 
     // Capture element that had focus before opening
     previousActiveElementRef.current = document.activeElement as HTMLElement | null;
-    isInitiatingRef.current = false;
-    setIsInitiating(false);
     setCopiedChecksum(false);
 
     // Prevent body scrolling
@@ -47,7 +48,7 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
 
     // Focus primary action button after mount
     const timer = window.setTimeout(() => {
-      continueButtonRef.current?.focus();
+      acknowledgedButtonRef.current?.focus();
     }, 50);
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -111,26 +112,6 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
     }
   };
 
-  const handleContinue = () => {
-    // Prevent duplicate downloads from repeated or rapid clicks
-    if (isInitiatingRef.current) return;
-    isInitiatingRef.current = true;
-    setIsInitiating(true);
-
-    // Initiate official GitHub Release download
-    triggerPromptFlowDownload();
-    if (onDownloadStarted) {
-      onDownloadStarted();
-    }
-
-    // Close the notice modal
-    onClose();
-  };
-
-  const handleCancel = () => {
-    onClose();
-  };
-
   const handleCopyChecksum = async () => {
     if (!promptflowDownloadConfig.sha256Checksum) return;
     try {
@@ -187,7 +168,7 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
 
           <button
             type="button"
-            onClick={handleCancel}
+            onClick={onClose}
             className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 focus:outline-none focus:ring-2 focus:ring-[#008B8B] transition-colors"
             aria-label="Close installation notice"
           >
@@ -290,24 +271,14 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
         </div>
 
         {/* Modal Footer Controls */}
-        <div className="p-4 sm:p-6 border-t border-slate-100 bg-slate-50/80 flex flex-col-reverse sm:flex-row sm:items-center justify-end gap-2.5 sm:gap-3">
+        <div className="p-4 sm:p-6 border-t border-slate-100 bg-slate-50/80 flex items-center justify-end">
           <button
+            ref={acknowledgedButtonRef}
             type="button"
-            onClick={handleCancel}
-            className="w-full sm:w-auto px-5 py-2.5 sm:py-3 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-200/70 border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-center"
+            onClick={onClose}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold text-white bg-[#008B8B] hover:bg-[#007373] active:scale-[0.98] transition-all shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#008B8B] focus:ring-offset-2 text-center"
           >
-            Cancel
-          </button>
-          <button
-            ref={continueButtonRef}
-            type="button"
-            onClick={handleContinue}
-            disabled={isInitiating}
-            aria-busy={isInitiating}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold text-white bg-[#008B8B] hover:bg-[#007373] active:scale-[0.98] transition-all shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#008B8B] focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed text-center"
-          >
-            <Download className="w-4 h-4 text-teal-100" />
-            <span>Continue to Download</span>
+            <span>Acknowledged</span>
           </button>
         </div>
       </div>

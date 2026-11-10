@@ -47,8 +47,18 @@ export const promptflowDownloadConfig: PromptFlowDownloadConfig = {
     'Installer downloads are natively tracked per asset download event. Each download increments the total asset download count without user accounts or tracking cookies.'
 };
 
+let lastDownloadTimestamp = 0;
+const DUPLICATE_PREVENTION_WINDOW_MS = 1500;
+
 export const triggerPromptFlowDownload = (): void => {
   if (typeof window === 'undefined') return;
+
+  const now = Date.now();
+  if (now - lastDownloadTimestamp < DUPLICATE_PREVENTION_WINDOW_MS) {
+    // Prevent duplicate downloads caused by accidental repeated clicks
+    return;
+  }
+  lastDownloadTimestamp = now;
 
   // Track official GA4 installer_download conversion event (Event B)
   trackInstallerDownload({

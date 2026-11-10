@@ -25,7 +25,10 @@ import {
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { PromptFlowSmartScreenModal } from './PromptFlowSmartScreenModal';
-import { promptflowDownloadConfig } from '../data/promptflowDownload';
+import {
+  promptflowDownloadConfig,
+  triggerPromptFlowDownload,
+} from '../data/promptflowDownload';
 import { trackPromptFlowDownloadClick } from '../utils/analytics';
 import {
   promptflowWorkspaces,
@@ -139,6 +142,7 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
                         button_location: 'promptflow_hero',
                         destination_url: promptflowDownloadConfig.githubAssetDownloadUrl,
                       });
+                      triggerPromptFlowDownload();
                       setIsSmartScreenModalOpen(true);
                     }}
                     className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-bold text-white bg-[#008B8B] hover:bg-[#007373] shadow-lg hover:shadow-pf-glow transition-all active:scale-[0.98] text-base"
@@ -507,6 +511,7 @@ export const PromptFlowPage: React.FC<PromptFlowPageProps> = ({ basePath = '../'
                           button_location: 'promptflow_download_section',
                           destination_url: promptflowDownloadConfig.githubAssetDownloadUrl,
                         });
+                        triggerPromptFlowDownload();
                         setIsSmartScreenModalOpen(true);
                       }}
                       className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white bg-[#008B8B] hover:bg-[#007373] shadow-lg hover:shadow-pf-glow transition-all active:scale-[0.98] text-base"
