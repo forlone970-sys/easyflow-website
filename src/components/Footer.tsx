@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ basePath = './', isSubPage = fal
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-md">
-              EasyFlow is a technology startup dedicated to engineering practical digital products and intuitive software experiences that simplify everyday life.
+              EasyFlow is a technology startup dedicated to engineering intelligent, practical digital products through lightweight, cost-efficient AI and intuitive software experiences. We focus on making software inherently smarter, more efficient, and accessible without unnecessary technological complexity.
             </p>
           </div>
 
@@ -161,7 +161,7 @@ export const Footer: React.FC<FooterProps> = ({ basePath = './', isSubPage = fal
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            &copy; {currentYear} EasyFlow. All rights reserved.
+            &copy; {currentYear} EasyFlowco. All rights reserved.
           </div>
           <div className="flex items-center gap-1.5 text-slate-400">
             <span>Built with purpose & precision</span>
