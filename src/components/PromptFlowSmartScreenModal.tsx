@@ -5,16 +5,16 @@
  * download is initiated via triggerPromptFlowDownload() upon CTA click.
  * 
  * Provides professional explanation of the initial unverified publisher SmartScreen warning,
- * displays the SHA-256 checksum for independent verification, and provides a single
- * "Acknowledged" action button to dismiss the modal without initiating duplicate downloads.
+ * displays the SHA-256 checksum for independent verification, outlines product ownership and usage terms,
+ * and provides a single "Acknowledged and Agreed" action button to dismiss the modal without initiating duplicate downloads.
  */
 import React, { useEffect, useRef, useState } from 'react';
 import {
   AlertTriangle,
-  X,
   Copy,
   Check,
   FileCheck2,
+  ShieldCheck,
 } from 'lucide-react';
 import { promptflowDownloadConfig } from '../data/promptflowDownload';
 
@@ -53,9 +53,9 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        // Modal can only be dismissed explicitly via "Acknowledged and Agreed" button
         e.preventDefault();
         e.stopPropagation();
-        onClose();
         return;
       }
 
@@ -106,12 +106,6 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
 
   if (!isOpen) return null;
 
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
   const handleCopyChecksum = async () => {
     if (!promptflowDownloadConfig.sha256Checksum) return;
     try {
@@ -141,39 +135,27 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
       aria-labelledby="smartscreen-notice-title"
       aria-describedby="smartscreen-notice-desc"
       className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-sm animate-fade-in"
-      onClick={handleBackdropClick}
     >
       <div
         ref={dialogRef}
         className="glass-modal rounded-3xl w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-slide-up border border-slate-200/90 text-slate-800"
       >
         {/* Modal Header */}
-        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-start justify-between gap-4 bg-slate-50/70">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center shrink-0 shadow-2xs">
-              <AlertTriangle className="w-5 h-5 text-amber-600" aria-hidden="true" />
-            </div>
-            <div>
-              <h2
-                id="smartscreen-notice-title"
-                className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight"
-              >
-                Windows Installation Notice
-              </h2>
-              <p className="text-xs text-slate-500 font-medium mt-0.5">
-                EasyFlow PromptFlow v{promptflowDownloadConfig.version} (64-bit)
-              </p>
-            </div>
+        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center gap-3.5 bg-slate-50/70">
+          <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center shrink-0 shadow-2xs">
+            <AlertTriangle className="w-5 h-5 text-amber-600" aria-hidden="true" />
           </div>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 focus:outline-none focus:ring-2 focus:ring-[#008B8B] transition-colors"
-            aria-label="Close installation notice"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div>
+            <h2
+              id="smartscreen-notice-title"
+              className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight"
+            >
+              Windows Installation Notice
+            </h2>
+            <p className="text-xs text-slate-500 font-medium mt-0.5">
+              EasyFlow PromptFlow v{promptflowDownloadConfig.version} (64-bit)
+            </p>
+          </div>
         </div>
 
         {/* Modal Scrollable Body */}
@@ -268,6 +250,17 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
               </div>
             )}
           </div>
+
+          {/* Product Ownership & Usage Terms */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-1.5">
+            <h4 className="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#008B8B] shrink-0" aria-hidden="true" />
+              <span>Product Ownership & Usage</span>
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              PromptFlow is an original product developed by EasyFlowco. We kindly ask users to respect our ownership of the software and not clone, reproduce, redistribute, or present the application as their own product without prior authorization from EasyFlowco. Thank you for respecting the work behind PromptFlow.
+            </p>
+          </div>
         </div>
 
         {/* Modal Footer Controls */}
@@ -278,7 +271,7 @@ export const PromptFlowSmartScreenModal: React.FC<PromptFlowSmartScreenModalProp
             onClick={onClose}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold text-white bg-[#008B8B] hover:bg-[#007373] active:scale-[0.98] transition-all shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#008B8B] focus:ring-offset-2 text-center"
           >
-            <span>Acknowledged</span>
+            <span>Acknowledged and Agreed</span>
           </button>
         </div>
       </div>
